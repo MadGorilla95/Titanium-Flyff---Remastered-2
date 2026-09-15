@@ -18,7 +18,7 @@ permissions:
 jobs:
   validate-audit-tools:
     runs-on: windows-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Check out repository
@@ -82,11 +82,33 @@ jobs:
             throw "$($failed.Count) static audit stage(s) failed."
           }
 
-      - name: Upload repository static audit
+      - name: Measure canonical Release x64 build
+        id: canonical_build
+        shell: powershell
+        run: |
+          $result = .\tools\baseline\Measure-Build.ps1 `
+            -RepositoryRoot . `
+            -Solution 'Source\Source\all\all.sln' `
+            -Configuration Release `
+            -Platform x64 `
+            -OutputDirectory '.\artifacts\baseline\canonical-build'
+
+          $summary = Get-Content $result.SummaryPath -Raw | ConvertFrom-Json
+          Add-Content $env:GITHUB_STEP_SUMMARY '## Canonical Release|x64 build baseline'
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Solution: ``Source\Source\all\all.sln``"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Succeeded: **$($summary.succeeded)**"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Exit code: $($summary.exitCode)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Duration: $([math]::Round($summary.elapsedMilliseconds / 1000, 3)) s"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Parsed warnings: $($summary.warningCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Parsed errors: $($summary.errorCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY ''
+          Add-Content $env:GITHUB_STEP_SUMMARY '> Warning counts are incomplete evidence while project configurations use TurnOffAllWarnings.'
+
+      - name: Upload repository audit and build evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: phase0-static-audit-${{ github.sha }}
+          name: phase0-audit-${{ github.sha }}
           path: artifacts/baseline/**
           if-no-files-found: error
           retention-days: 7
