@@ -1,6 +1,6 @@
 # Titanium Flyff — baseline-rapport
 
-> Vul dit rapport pas in na een gecontroleerde run. Bewaar ruwe meetbestanden in `artifacts/baseline/`; commit alleen resultaten die geen geheimen, accountgegevens, IP-adressen of persoonsgegevens bevatten.
+> Vul dit rapport pas in na een gecontroleerde run. Bewaar ruwe meetbestanden in `artifacts/baseline/`; commit alleen resultaten zonder geheimen, accountgegevens, IP-adressen of persoonsgegevens.
 
 ## 1. Identiteit van de meting
 
@@ -14,7 +14,9 @@
 | Windows-versie | |
 | CPU / logisch aantal cores | |
 | RAM | |
+| Energieplan | |
 | Visual Studio / MSBuild | |
+| PlatformToolset / Windows SDK | |
 | SQL Server-versie | |
 | Buildconfiguratie / platform | |
 | Database/data-snapshot | |
@@ -47,11 +49,17 @@ Beschrijf exact dezelfde stappen voor iedere run:
 
 ## 3. Project- en runtime-inventaris
 
+### Componenten
+
+| Component | Classificatie | Canoniek project | Actief | Owner | Opmerking |
+|---|---|---|---:|---|---|
+| | production-server / client / tool / shared / third-party | | | | |
+
 ### Actieve executableketen
 
-| Volgorde | Executable | Project | Startbewijs | Runtimebewijs | Functie | Status |
-|---:|---|---|---|---|---|---|
-| 1 | | | | | | |
+| Volgorde | Executable | Bestandspad | SHA-256 | Project | Startbewijs | Runtimebewijs | Ready-marker | Functie |
+|---:|---|---|---|---|---|---|---|---|
+| 1 | | | | | | | | |
 
 ### Aanwezige maar niet-bewezen projecten
 
@@ -67,6 +75,12 @@ Beschrijf exact dezelfde stappen voor iedere run:
 
 ## 4. Buildbaseline
 
+### Build-policy vóór de meting
+
+| Project | Configuratie/platform | Warning level | Warnings as errors | Disabled warnings | Toolset | SDK | Risico |
+|---|---|---|---|---|---|---|---|
+| | | | | | | | |
+
 | Metric | Cold build | Warm build 1 | Warm build 2 | Warm build 3 | Mediaan |
 |---|---:|---:|---:|---:|---:|
 | Totale duur (s) | | | | | |
@@ -75,17 +89,31 @@ Beschrijf exact dezelfde stappen voor iedere run:
 
 ### Belangrijkste warnings/errors
 
-| Code | Aantal | Project/bestand | Risico | Besluit |
-|---|---:|---|---|---|
-| | | | | |
+| Code | Aantal | Project/bestand | Configuratie | Risico | Besluit |
+|---|---:|---|---|---|---|
+| | | | | | |
 
-## 5. Runtime-timings
+## 5. Startup-topologie en runtime-timings
 
-### Serverstartup
+### Launcher-/orchestratortopologie
 
-| Run | Startmarker | Eindmarker | Duur (ms) | Geldig |
-|---:|---|---|---:|---:|
-| 1 | | | | |
+| Launcher | Architectuur | Procesvolgorde | Vaste delay vóór laatste start | Totale scripted startupdelay | Readinesscheck | Beoordeling |
+|---|---|---|---:|---:|---:|---|
+| | | | | | | |
+
+### Procesreadiness
+
+| Proces | Launch-tijd | Proces zichtbaar | Poort/listener ready | Dependency ready | Log-ready | Totale readyduur (ms) |
+|---|---|---|---|---|---|---:|
+| | | | | | | |
+
+### Volledige serverstartup
+
+| Run | Launcherduur (ms) | Tijd tot World gestart | Tijd tot volledige keten ready | Cold/warm | Geldig | Opmerking |
+|---:|---:|---:|---:|---|---:|---|
+| 1 | | | | | | |
+
+> Rapporteer vaste launcherwachttijd apart. Een `timeout` is geen ready-marker.
 
 ### Login
 
@@ -105,12 +133,13 @@ Beschrijf exact dezelfde stappen voor iedere run:
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | | | | | | | | | | |
 
-Let op:
+Controlepunten:
 
 - vergelijk cold-cache en warm-cache niet als één dataset;
 - beoordeel totaalwerk én latency per call;
 - een snelle query die extreem vaak wordt aangeroepen kan belangrijker zijn dan één trage query;
-- controleer parameterisatie en execution plans voordat indexen worden toegevoegd.
+- controleer parameterisatie en execution plans vóór indexwijzigingen;
+- leg deadlocks, timeouts en blocking chains afzonderlijk vast.
 
 ## 7. Procesresources
 
@@ -120,11 +149,11 @@ Let op:
 
 ### Leakonderzoek
 
-| Signaal | Reproduceerbaar | Profilerbewijs | Vermoedelijke owner | Besluit |
-|---|---:|---:|---|---|
-| Private memory stijgt | | | | |
-| Handles stijgen | | | | |
-| Threads stijgen | | | | |
+| Signaal | Reproduceerbaar | Soakduur | Profilerbewijs | Vermoedelijke owner | Besluit |
+|---|---:|---:|---:|---|---|
+| Private memory stijgt | | | | | |
+| Handles stijgen | | | | | |
+| Threads stijgen | | | | | |
 
 ## 8. Netwerkbaseline
 
@@ -138,21 +167,37 @@ Let op:
 
 ### Verdachte flows
 
-| Proces | Local endpoint | Remote endpoint | State | Frequentie | Beoordeling |
-|---|---|---|---|---:|---|
-| | | | | | |
+| Proces | Local endpoint | Remote endpoint | State | Frequentie | Correlatie met scenario | Beoordeling |
+|---|---|---|---|---:|---|---|
+| | | | | | | |
 
 ## 9. Statische audit
 
-| Categorie | Kandidaten | Getriageerd | Relevant | False positive | Third-party |
-|---|---:|---:|---:|---:|---:|
-| Sleep/SleepEx | | | | | |
-| Blocking waits | | | | | |
-| Synchrone file-I/O | | | | | |
-| Synchrone socket-I/O | | | | | |
-| SQL-calls | | | | | |
-| Oneindige/busy loops | | | | | |
-| Brede/brute-force scans | | | | | |
+| Categorie | Kandidaten | Getriageerd | Relevant | False positive | Generated | Third-party |
+|---|---:|---:|---:|---:|---:|---:|
+| Sleep/SleepEx | | | | | | |
+| Blocking waits | | | | | | |
+| Synchrone file-I/O | | | | | | |
+| Synchrone socket-I/O | | | | | | |
+| SQL-calls | | | | | | |
+| Oneindige/busy loops | | | | | | |
+| Brede/brute-force scans | | | | | | |
+
+### Repository-hygiëne
+
+| Categorie | Aantal | Nodig voor actuele build | Actie | Bewijs |
+|---|---:|---:|---|---|
+| Legacy projectformaten | | | | |
+| Generated compiler artifacts | | | | |
+| Backupkopieën | | | | |
+| Binaries in source | | | | |
+| Archives in source | | | | |
+
+### Grote translation units
+
+| Bestand | Grootte | Buildimpact | Runtimeimpact bewezen | Module-eigenaarschap | Besluit |
+|---|---:|---:|---:|---|---|
+| | | | nee | | |
 
 ### Hoogste prioriteit
 
@@ -183,14 +228,16 @@ Let op:
 ## 11. Besluit voor Fase 1
 
 - [ ] Baseline is reproduceerbaar.
-- [ ] Minstens drie warm runs zijn beschikbaar.
-- [ ] Actieve executableketen is bewezen.
-- [ ] SQL- en runtime-hotspots zijn aan concrete code gekoppeld.
+- [ ] Minstens één cold en drie warm runs zijn beschikbaar.
+- [ ] Actieve executableketen, paden en hashes zijn bewezen.
+- [ ] Readiness is per proces en voor de volledige keten meetbaar.
+- [ ] Buildwarningbeleid is bekend en de warningbaseline is geldig.
+- [ ] SQL-, netwerk- en runtime-hotspots zijn aan concrete code gekoppeld.
 - [ ] Eerste wijziging heeft één meetbare hypothese.
 - [ ] Rollback en regressietest zijn bepaald.
 
-**Go / no-go:**
-**Eerste wijzigingshypothese:**
-**Verwachte metric:**
-**Acceptatiegrens:**
+**Go / no-go:**  
+**Eerste wijzigingshypothese:**  
+**Verwachte metric:**  
+**Acceptatiegrens:**  
 **Regressiegrens:**

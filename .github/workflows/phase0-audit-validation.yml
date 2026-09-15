@@ -1,0 +1,57 @@
+name: Phase 0 audit validation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/phase0-audit-validation.yml'
+      - 'tools/baseline/**'
+      - 'docs/baseline/**'
+  pull_request:
+    paths:
+      - '.github/workflows/phase0-audit-validation.yml'
+      - 'tools/baseline/**'
+      - 'docs/baseline/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-audit-tools:
+    runs-on: windows-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Parse PowerShell files
+        shell: powershell
+        run: |
+          $failed = $false
+          Get-ChildItem .\tools\baseline -Recurse -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              $_.FullName,
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+
+            if ($errors.Count -gt 0) {
+              $failed = $true
+              Write-Host "Parser errors in $($_.FullName)" -ForegroundColor Red
+              $errors | ForEach-Object { Write-Host $_.Message -ForegroundColor Red }
+            }
+          }
+          if ($failed) { throw 'One or more PowerShell files contain parser errors.' }
+
+      - name: Validate example configuration
+        shell: powershell
+        run: |
+          Get-Content .\tools\baseline\baseline.config.example.json -Raw |
+            ConvertFrom-Json |
+            Out-Null
+
+      - name: Run baseline-tool self-test
+        shell: powershell
+        run: .\tools\baseline\tests\Invoke-BaselineToolSelfTest.ps1
