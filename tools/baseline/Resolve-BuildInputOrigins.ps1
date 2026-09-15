@@ -96,8 +96,8 @@ function Get-GitPathEvidence {
     $gitPath = $RelativePath.Replace('\', '/')
     Push-Location $Repository
     try {
-        & git ls-files --error-unmatch -- $gitPath *> $null
-        $result.tracked = [bool]($LASTEXITCODE -eq 0)
+        $trackedOutput = @(& git ls-files -- $gitPath 2>$null | Where-Object { $_ })
+        $result.tracked = [bool]($trackedOutput.Count -gt 0)
 
         $ignoreOutput = @(& git check-ignore -v --no-index -- $gitPath 2>$null)
         if ($LASTEXITCODE -eq 0 -and $ignoreOutput.Count -gt 0) {
