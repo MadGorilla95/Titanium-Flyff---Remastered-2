@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   validate-audit-tools:
-    runs-on: windows-latest
+    runs-on: windows-2022
     timeout-minutes: 60
 
     steps:
@@ -95,6 +95,7 @@ jobs:
 
           $summary = Get-Content $result.SummaryPath -Raw | ConvertFrom-Json
           Add-Content $env:GITHUB_STEP_SUMMARY '## Canonical Release|x64 build baseline'
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Runner: ``windows-2022``"
           Add-Content $env:GITHUB_STEP_SUMMARY "- Solution: ``Source\Source\all\all.sln``"
           Add-Content $env:GITHUB_STEP_SUMMARY "- Succeeded: **$($summary.succeeded)**"
           Add-Content $env:GITHUB_STEP_SUMMARY "- Exit code: $($summary.exitCode)"
@@ -103,6 +104,10 @@ jobs:
           Add-Content $env:GITHUB_STEP_SUMMARY "- Parsed errors: $($summary.errorCount)"
           Add-Content $env:GITHUB_STEP_SUMMARY ''
           Add-Content $env:GITHUB_STEP_SUMMARY '> Warning counts are incomplete evidence while project configurations use TurnOffAllWarnings.'
+
+          # A failed legacy build is baseline evidence, not a failure of the audit tooling.
+          # The JSON summary and full MSBuild log are always uploaded for diagnosis.
+          exit 0
 
       - name: Upload repository audit and build evidence
         if: always()
