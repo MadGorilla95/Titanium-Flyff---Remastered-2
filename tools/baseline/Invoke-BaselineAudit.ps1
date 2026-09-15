@@ -153,6 +153,15 @@ Invoke-Stage "project-inventory" {
         -OutputDirectory (Join-Path $runDirectory "inventory")
 } $stages | Out-Null
 
+Invoke-Stage "build-chain" {
+    & (Join-Path $PSScriptRoot "Get-BuildChain.ps1") `
+        -RepositoryRoot $repositoryRoot `
+        -SourceRoot ([string]$config.sourceRoot) `
+        -Configuration ([string]$config.build.configuration) `
+        -Platform ([string]$config.build.platform) `
+        -OutputDirectory (Join-Path $runDirectory "build-chain")
+} $stages | Out-Null
+
 Invoke-Stage "startup-topology" {
     & (Join-Path $PSScriptRoot "Get-StartupTopology.ps1") `
         -RepositoryRoot $repositoryRoot `
@@ -274,7 +283,7 @@ else {
 }
 
 $manifest = [ordered]@{
-    schemaVersion = 3
+    schemaVersion = 4
     runId = $runId
     generatedAtUtc = [DateTime]::UtcNow.ToString("o")
     runDirectory = $runDirectory
