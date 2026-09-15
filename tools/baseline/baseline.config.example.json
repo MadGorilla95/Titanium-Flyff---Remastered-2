@@ -5,7 +5,7 @@
   "artifactRoot": "artifacts/baseline",
   "build": {
     "enabled": false,
-    "solution": "",
+    "solution": "Source/Source/all/all.sln",
     "configuration": "Release",
     "platform": "x64",
     "additionalArguments": []
