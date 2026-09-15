@@ -49,3 +49,30 @@ World/
 *.mp3
 *.ogg
 *.res
+
+
+# Visual Studio IntelliSense cache
+*.ipch
+.vs/
+ipch/
+
+
+# Visual Studio
+.vs/
+Debug/
+Release/
+x64/
+x86/
+ipch/
+*.ipch
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.pch
+*.tlog
+*.lastbuildstate
+*.suo
+*.user
+*.log
+*.tmp
