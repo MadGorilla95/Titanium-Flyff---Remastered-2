@@ -173,8 +173,13 @@ catch {
 }
 
 $git = Get-Command git -ErrorAction SilentlyContinue
+$gitMetadataPath = Join-Path $repositoryRoot '.git'
 if ($null -eq $git) {
     Add-Check $checks 'repository' 'Git state' 'warning' 'Git is unavailable; commit and dirty-worktree evidence cannot be captured.' $null
+}
+elseif (-not (Test-Path -LiteralPath $gitMetadataPath)) {
+    Add-Check $checks 'repository' 'Git state' 'warning' `
+        "Repository root is not a Git worktree: $repositoryRoot" $repositoryRoot
 }
 else {
     Push-Location $repositoryRoot
@@ -186,6 +191,10 @@ else {
         Add-Check $checks 'repository' 'Git state' $gitStatus `
             "Branch=$branch; commit=$commit; changed paths=$($changes.Count)." `
             ([ordered]@{ branch = $branch; commit = $commit; changedPathCount = $changes.Count })
+    }
+    catch {
+        Add-Check $checks 'repository' 'Git state' 'warning' `
+            "Git state could not be captured: $($_.Exception.Message)" $repositoryRoot
     }
     finally {
         Pop-Location
