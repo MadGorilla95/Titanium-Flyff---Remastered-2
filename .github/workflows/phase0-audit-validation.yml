@@ -48,10 +48,15 @@ jobs:
       - name: Validate example configuration
         shell: powershell
         run: |
-          Get-Content .\tools\baseline\baseline.config.example.json -Raw |
-            ConvertFrom-Json |
-            Out-Null
+          $config = Get-Content .\tools\baseline\baseline.config.example.json -Raw |
+            ConvertFrom-Json
+          if ($config.schemaVersion -lt 2) { throw 'Expected baseline config schema version 2 or newer.' }
+          if ($null -eq $config.runtime.captureTopology) { throw 'runtime.captureTopology is missing.' }
 
       - name: Run baseline-tool self-test
         shell: powershell
         run: .\tools\baseline\tests\Invoke-BaselineToolSelfTest.ps1
+
+      - name: Run baseline-comparison self-test
+        shell: powershell
+        run: .\tools\baseline\tests\Invoke-BaselineComparisonSelfTest.ps1

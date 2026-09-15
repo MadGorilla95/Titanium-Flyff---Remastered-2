@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "repositoryRoot": "../..",
   "sourceRoot": "Source/Source",
   "artifactRoot": "artifacts/baseline",
@@ -13,6 +13,9 @@
   "runtime": {
     "enabled": false,
     "processNames": [],
+    "captureTopology": true,
+    "includeCommandLine": false,
+    "skipFileHash": false,
     "sampleIntervalSeconds": 1,
     "durationSeconds": 300
   },
@@ -77,6 +80,11 @@
       "ThirdParty",
       "vendor"
     ]
+  },
+  "comparison": {
+    "warningPercent": 5,
+    "regressionPercent": 15,
+    "requireMatchingEnvironment": true
   },
   "runPolicy": {
     "coldRunSeparately": true,

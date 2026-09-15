@@ -15,6 +15,19 @@ function Resolve-FromBase([string]$Base, [string]$Path) {
     return [IO.Path]::GetFullPath((Join-Path $Base $Path))
 }
 
+function Get-OptionalProperty {
+    param(
+        [object]$Object,
+        [Parameter(Mandatory = $true)][string]$Name,
+        [object]$Default = $null
+    )
+
+    if ($null -eq $Object) { return $Default }
+    $property = $Object.PSObject.Properties[$Name]
+    if ($null -eq $property) { return $Default }
+    return $property.Value
+}
+
 function Invoke-Stage {
     param(
         [string]$Name,
@@ -191,7 +204,27 @@ else {
 
 $runtimeProcessNames = @($config.runtime.processNames | ForEach-Object { [string]$_ } | Where-Object { $_ })
 $runRuntime = [bool]$config.runtime.enabled -or $IncludeRuntime
+$captureRuntimeTopology = [bool](Get-OptionalProperty -Object $config.runtime -Name "captureTopology" -Default $true)
+$includeRuntimeCommandLine = [bool](Get-OptionalProperty -Object $config.runtime -Name "includeCommandLine" -Default $false)
+$skipRuntimeFileHash = [bool](Get-OptionalProperty -Object $config.runtime -Name "skipFileHash" -Default $false)
+
 if ($runRuntime -and $runtimeProcessNames.Count -gt 0) {
+    if ($captureRuntimeTopology) {
+        Invoke-Stage "runtime-topology" {
+            $parameters = @{
+                ProcessName = $runtimeProcessNames
+                RepositoryRoot = $repositoryRoot
+                OutputDirectory = (Join-Path $runDirectory "runtime-topology")
+            }
+            if ($includeRuntimeCommandLine) { $parameters.IncludeCommandLine = $true }
+            if ($skipRuntimeFileHash) { $parameters.SkipFileHash = $true }
+            & (Join-Path $PSScriptRoot "Get-RuntimeTopology.ps1") @parameters
+        } $stages | Out-Null
+    }
+    else {
+        Add-Skipped "runtime-topology" "runtime.captureTopology is false." $stages
+    }
+
     Invoke-Stage "process-resources" {
         & (Join-Path $PSScriptRoot "Measure-ProcessResources.ps1") `
             -ProcessName $runtimeProcessNames `
@@ -202,9 +235,11 @@ if ($runRuntime -and $runtimeProcessNames.Count -gt 0) {
     } $stages | Out-Null
 }
 elseif ($runRuntime) {
+    Add-Skipped "runtime-topology" "runtime.processNames is empty." $stages
     Add-Skipped "process-resources" "runtime.processNames is empty." $stages
 }
 else {
+    Add-Skipped "runtime-topology" "Enable runtime.enabled or pass -IncludeRuntime." $stages
     Add-Skipped "process-resources" "Enable runtime.enabled or pass -IncludeRuntime." $stages
 }
 
@@ -239,12 +274,13 @@ else {
 }
 
 $manifest = [ordered]@{
-    schemaVersion = 2
+    schemaVersion = 3
     runId = $runId
     generatedAtUtc = [DateTime]::UtcNow.ToString("o")
     runDirectory = $runDirectory
     environmentPath = (Join-Path $runDirectory "environment.json")
     runPolicy = $config.runPolicy
+    comparisonPolicy = Get-OptionalProperty -Object $config -Name "comparison" -Default $null
     stages = @($stages)
 }
 $manifestPath = Join-Path $runDirectory "baseline-manifest.json"
@@ -262,11 +298,13 @@ $summary = New-Object Text.StringBuilder
 [void]$summary.AppendLine("| Stage | Status | Duration (s) | Message |")
 [void]$summary.AppendLine("|---|---|---:|---|")
 foreach ($stage in $stages) {
-    $message = ([string]$stage.message) -replace '\|', '\|'
+    $message = ([string]$stage.message) -replace "\|", "\|"
     [void]$summary.AppendLine("| $($stage.name) | $($stage.status) | $($stage.durationSeconds) | $message |")
 }
 [void]$summary.AppendLine("")
 [void]$summary.AppendLine("> Evidence only. Compare controlled runs with the same machine, build, database/data snapshot, world configuration, client route and workload.")
+[void]$summary.AppendLine("")
+[void]$summary.AppendLine("Compare this run later with: ``.\tools\baseline\Compare-BaselineRuns.ps1 -ReferenceRun <baseline> -CandidateRun '$runDirectory'``")
 $summaryPath = Join-Path $runDirectory "RUN-SUMMARY.md"
 $summary.ToString() | Set-Content $summaryPath -Encoding UTF8
 
