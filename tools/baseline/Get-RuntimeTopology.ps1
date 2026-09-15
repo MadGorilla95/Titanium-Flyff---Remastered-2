@@ -39,33 +39,42 @@ function Get-PeArchitecture {
         $reader = New-Object System.IO.BinaryReader($stream)
 
         if ($reader.ReadUInt16() -ne 0x5A4D) { return "not-pe" }
+
         $stream.Position = 0x3C
         $peOffset = $reader.ReadInt32()
-        if ($peOffset -lt 0 -or ($peOffset + 6) -gt $stream.Length) { return "invalid-pe" }
+        if ($peOffset -lt 0 -or ($peOffset + 6) -gt $stream.Length) {
+            return "invalid-pe"
+        }
 
         $stream.Position = $peOffset
         if ($reader.ReadUInt32() -ne 0x00004550) { return "invalid-pe" }
 
-        switch ($reader.ReadUInt16()) {
+        $machine = $reader.ReadUInt16()
+        switch ($machine) {
             0x014c { return "x86" }
             0x8664 { return "x64" }
             0x01c0 { return "arm" }
             0x01c4 { return "armv7" }
             0xAA64 { return "arm64" }
-            default { return ("unknown-0x{0:X4}" -f $_) }
+            default { return ("unknown-0x{0:X4}" -f $machine) }
         }
     }
     catch {
         return $null
     }
     finally {
-        if ($null -ne $reader) { $reader.Dispose() }
-        elseif ($null -ne $stream) { $stream.Dispose() }
+        if ($null -ne $reader) {
+            $reader.Dispose()
+        }
+        elseif ($null -ne $stream) {
+            $stream.Dispose()
+        }
     }
 }
 
 function Convert-ToMarkdownCell {
     param([object]$Value)
+
     if ($null -eq $Value) { return "" }
     return ([string]$Value).Replace("|", "\|").Replace("`r", " ").Replace("`n", " ")
 }
@@ -101,16 +110,24 @@ $allTcp = @()
 $allUdp = @()
 
 if ($null -ne (Get-Command Get-NetTCPConnection -ErrorAction SilentlyContinue)) {
-    try { $allTcp = @(Get-NetTCPConnection -ErrorAction Stop) }
-    catch { Add-UniqueWarning -List $warnings -Message "TCP endpoint enumeration failed: $($_.Exception.Message)" }
+    try {
+        $allTcp = @(Get-NetTCPConnection -ErrorAction Stop)
+    }
+    catch {
+        Add-UniqueWarning -List $warnings -Message "TCP endpoint enumeration failed: $($_.Exception.Message)"
+    }
 }
 else {
     Add-UniqueWarning -List $warnings -Message "Get-NetTCPConnection is unavailable; TCP listeners and dependencies are omitted."
 }
 
 if ($null -ne (Get-Command Get-NetUDPEndpoint -ErrorAction SilentlyContinue)) {
-    try { $allUdp = @(Get-NetUDPEndpoint -ErrorAction Stop) }
-    catch { Add-UniqueWarning -List $warnings -Message "UDP endpoint enumeration failed: $($_.Exception.Message)" }
+    try {
+        $allUdp = @(Get-NetUDPEndpoint -ErrorAction Stop)
+    }
+    catch {
+        Add-UniqueWarning -List $warnings -Message "UDP endpoint enumeration failed: $($_.Exception.Message)"
+    }
 }
 else {
     Add-UniqueWarning -List $warnings -Message "Get-NetUDPEndpoint is unavailable; UDP endpoints are omitted."
@@ -126,12 +143,13 @@ foreach ($process in $observedProcesses) {
         $process.Refresh()
         $pidValue = [int]$process.Id
         $cimProcess = $null
+
         try {
             $cimProcess = Get-CimInstance -ClassName Win32_Process -Filter "ProcessId = $pidValue" -ErrorAction Stop |
                 Select-Object -First 1
         }
         catch {
-            Add-UniqueWarning -List $warnings -Message "CIM process metadata could not be read for PID $pidValue: $($_.Exception.Message)"
+            Add-UniqueWarning -List $warnings -Message "CIM process metadata could not be read for PID $($pidValue): $($_.Exception.Message)"
         }
 
         $path = $null
@@ -148,7 +166,10 @@ foreach ($process in $observedProcesses) {
         $parentProcessName = $null
         if ($null -ne $cimProcess -and $null -ne $cimProcess.ParentProcessId) {
             $parentProcessId = [int]$cimProcess.ParentProcessId
-            try { $parentProcessName = (Get-Process -Id $parentProcessId -ErrorAction Stop).ProcessName } catch {}
+            try {
+                $parentProcessName = (Get-Process -Id $parentProcessId -ErrorAction Stop).ProcessName
+            }
+            catch {}
         }
 
         $executableName = "$($process.ProcessName).exe"
@@ -164,19 +185,24 @@ foreach ($process in $observedProcesses) {
         if (-not [string]::IsNullOrWhiteSpace($path) -and (Test-Path -LiteralPath $path -PathType Leaf)) {
             try {
                 $file = Get-Item -LiteralPath $path -ErrorAction Stop
+                $version = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($path)
+
                 $executableName = $file.Name
                 $fileSizeBytes = [int64]$file.Length
                 $lastWriteTimeUtc = $file.LastWriteTimeUtc.ToString("o")
                 $peArchitecture = Get-PeArchitecture -Path $path
-                $version = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($path)
                 $fileVersion = $version.FileVersion
                 $productVersion = $version.ProductVersion
                 $companyName = $version.CompanyName
                 $productName = $version.ProductName
 
                 if (-not $SkipFileHash) {
-                    try { $sha256 = (Get-FileHash -LiteralPath $path -Algorithm SHA256 -ErrorAction Stop).Hash }
-                    catch { Add-UniqueWarning -List $warnings -Message "SHA-256 could not be calculated for '$path': $($_.Exception.Message)" }
+                    try {
+                        $sha256 = (Get-FileHash -LiteralPath $path -Algorithm SHA256 -ErrorAction Stop).Hash
+                    }
+                    catch {
+                        Add-UniqueWarning -List $warnings -Message "SHA-256 could not be calculated for '$path': $($_.Exception.Message)"
+                    }
                 }
             }
             catch {
@@ -230,7 +256,7 @@ foreach ($process in $observedProcesses) {
         [void]$processRows.Add([pscustomobject]@{
             ProcessName = $process.ProcessName
             ProcessId = $pidValue
-            RuntimeInstanceId = "$($process.ProcessName):$($pidValue):$startIdentity"
+            RuntimeInstanceId = ("{0}:{1}:{2}" -f $process.ProcessName, $pidValue, $startIdentity)
             RuntimeConfirmed = $true
             ReadinessStatus = "unproven"
             StartTimeUtc = $(if ($null -eq $startTimeUtc) { $null } else { $startTimeUtc.ToString("o") })
@@ -340,6 +366,7 @@ foreach ($row in $processRows) {
     if (-not [string]::IsNullOrWhiteSpace([string]$row.Sha256)) {
         $hash = if ($row.Sha256.Length -gt 16) { $row.Sha256.Substring(0, 16) + "..." } else { $row.Sha256 }
     }
+
     [void]$markdown.AppendLine("| $(Convert-ToMarkdownCell $row.ProcessName) | $($row.ProcessId) | $(Convert-ToMarkdownCell $row.PeArchitecture) | $(Convert-ToMarkdownCell $row.ExecutablePath) | $hash | $(Convert-ToMarkdownCell ($row.TcpListeningPorts -join ', ')) | $($row.TcpEstablishedCount) | $(Convert-ToMarkdownCell ($row.UdpListeningPorts -join ', ')) | $($row.ReadinessStatus) |")
 }
 $markdown.ToString() | Set-Content -LiteralPath $markdownPath -Encoding UTF8
