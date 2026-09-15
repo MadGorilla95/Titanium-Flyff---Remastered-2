@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "repositoryRoot": "../..",
+  "sourceRoot": "Source/Source",
+  "artifactRoot": "artifacts/baseline",
+  "build": {
+    "enabled": false,
+    "solution": "",
+    "configuration": "Release",
+    "platform": "x64",
+    "additionalArguments": []
+  },
+  "runtime": {
+    "enabled": false,
+    "processNames": [],
+    "sampleIntervalSeconds": 1,
+    "durationSeconds": 300
+  },
+  "network": {
+    "enabled": false,
+    "processNames": [],
+    "sampleIntervalSeconds": 1,
+    "durationSeconds": 300
+  },
+  "logs": {
+    "enabled": false,
+    "paths": [],
+    "timestampRegex": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}[ T]\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,7})?)",
+    "timestampFormats": [
+      "yyyy-MM-dd HH:mm:ss.fffffff",
+      "yyyy-MM-dd HH:mm:ss.fff",
+      "yyyy-MM-dd HH:mm:ss",
+      "yyyy-MM-ddTHH:mm:ss.fffffff",
+      "yyyy-MM-ddTHH:mm:ss.fff",
+      "yyyy-MM-ddTHH:mm:ss"
+    ],
+    "timings": [
+      {
+        "name": "server-startup",
+        "enabled": false,
+        "startPattern": "",
+        "endPattern": "",
+        "correlationRegex": ""
+      },
+      {
+        "name": "login",
+        "enabled": false,
+        "startPattern": "",
+        "endPattern": "",
+        "correlationRegex": ""
+      },
+      {
+        "name": "world-load",
+        "enabled": false,
+        "startPattern": "",
+        "endPattern": "",
+        "correlationRegex": ""
+      }
+    ]
+  },
+  "staticScan": {
+    "excludeDirectories": [
+      ".git",
+      ".vs",
+      "Debug",
+      "Release",
+      "x64",
+      "x86",
+      "Output",
+      "artifacts",
+      "DX_SDK",
+      "DirectX",
+      "Lib",
+      "Lib64",
+      "CrashRpt",
+      "third_party",
+      "ThirdParty",
+      "vendor"
+    ]
+  },
+  "runPolicy": {
+    "coldRunSeparately": true,
+    "warmRuns": 3,
+    "notes": "Use the same machine, build, database/data snapshot, world configuration, client route and test duration for every comparable run."
+  }
+}
