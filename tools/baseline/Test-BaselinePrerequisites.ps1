@@ -156,7 +156,7 @@ try {
 }
 catch {
     Add-Check $checks 'repository' 'Artifact output is writable' 'error' `
-        "Cannot write to $artifactRoot: $($_.Exception.Message)" $artifactRoot
+        "Cannot write to ${artifactRoot}: $($_.Exception.Message)" $artifactRoot
 }
 
 try {
