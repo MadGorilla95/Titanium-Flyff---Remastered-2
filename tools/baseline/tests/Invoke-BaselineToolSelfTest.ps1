@@ -14,9 +14,11 @@ $inventoryOutput = Join-Path $fixtureRoot 'artifacts\inventory'
 $policyOutput = Join-Path $fixtureRoot 'artifacts\build-policy'
 $hygieneOutput = Join-Path $fixtureRoot 'artifacts\hygiene'
 $topologyOutput = Join-Path $fixtureRoot 'artifacts\topology'
+$buildChainOutput = Join-Path $fixtureRoot 'artifacts\build-chain'
 
 try {
     New-Item -ItemType Directory -Path (Join-Path $fixtureRoot 'Source\Source\AccountServer') -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $fixtureRoot 'Source\Output\AccountServer\Release64') -Force | Out-Null
     New-Item -ItemType Directory -Path (Join-Path $fixtureRoot 'ImmortalProgram') -Force | Out-Null
 
     @'
@@ -25,7 +27,10 @@ try {
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|x64"><Configuration>Release</Configuration><Platform>x64</Platform></ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup Label="Globals"><WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion></PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{11111111-1111-1111-1111-111111111111}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType><PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -34,13 +39,39 @@ try {
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile><WarningLevel>TurnOffAllWarnings</WarningLevel><TreatWarningAsError>false</TreatWarningAsError></ClCompile>
+    <Link><OutputFile>..\..\Output\AccountServer\Release64\AccountServer.exe</OutputFile></Link>
   </ItemDefinitionGroup>
 </Project>
 '@ | Set-Content (Join-Path $fixtureRoot 'Source\Source\AccountServer\AccountServer.vcxproj') -Encoding UTF8
 
+    '<VisualStudioProject Name="AccountServer" />' |
+        Set-Content (Join-Path $fixtureRoot 'Source\Source\AccountServer\AccountServer.vcproj') -Encoding UTF8
+
+    @'
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AccountServer", "AccountServer.vcproj", "{11111111-1111-1111-1111-111111111111}"
+EndProject
+Global
+    GlobalSection(SolutionConfiguration) = preSolution
+        Debug = Debug
+        Release = Release
+    EndGlobalSection
+    GlobalSection(ProjectConfiguration) = postSolution
+        {11111111-1111-1111-1111-111111111111}.Release.ActiveCfg = Release|Win32
+        {11111111-1111-1111-1111-111111111111}.Release.Build.0 = Release|Win32
+    EndGlobalSection
+EndGlobal
+'@ | Set-Content (Join-Path $fixtureRoot 'Source\Source\AccountServer\AccountServer71.sln') -Encoding UTF8
+
     'int main() { return 0; }' | Set-Content (Join-Path $fixtureRoot 'Source\Source\AccountServer\AccountServer.cpp') -Encoding UTF8
     'preprocessed fixture' | Set-Content (Join-Path $fixtureRoot 'Source\Source\AccountServer\AccountServer.i') -Encoding UTF8
+    New-Item -ItemType File -Path (Join-Path $fixtureRoot 'Source\Output\AccountServer\Release64\AccountServer.exe') -Force | Out-Null
     New-Item -ItemType File -Path (Join-Path $fixtureRoot 'ImmortalProgram\1. Account-x64.exe') -Force | Out-Null
+
+    @'
+@echo off
+COPY "Source\Output\AccountServer\Release64\AccountServer.exe" "Program\1. Account-x64.exe"
+'@ | Set-Content (Join-Path $fixtureRoot '-_Move_Compiles.bat') -Encoding ASCII
 
     @'
 @echo off
@@ -59,11 +90,13 @@ timeout 1 > nul
     & (Join-Path $toolRoot 'Get-BuildPolicyAudit.ps1') -RepositoryRoot $fixtureRoot -SourceRoot 'Source\Source' -OutputDirectory $policyOutput | Out-Null
     & (Join-Path $toolRoot 'Get-RepositoryHygiene.ps1') -RepositoryRoot $fixtureRoot -SourceRoot 'Source\Source' -OutputDirectory $hygieneOutput | Out-Null
     & (Join-Path $toolRoot 'Get-StartupTopology.ps1') -RepositoryRoot $fixtureRoot -OutputDirectory $topologyOutput | Out-Null
+    & (Join-Path $toolRoot 'Get-BuildChain.ps1') -RepositoryRoot $fixtureRoot -SourceRoot 'Source\Source' -Configuration 'Release' -Platform 'x64' -OutputDirectory $buildChainOutput | Out-Null
 
     $inventory = Get-Content (Join-Path $inventoryOutput 'project-inventory.json') -Raw | ConvertFrom-Json
     $policy = Get-Content (Join-Path $policyOutput 'project-build-policies.json') -Raw | ConvertFrom-Json
     $hygiene = Get-Content (Join-Path $hygieneOutput 'repository-hygiene.json') -Raw | ConvertFrom-Json
     $topology = Get-Content (Join-Path $topologyOutput 'startup-topology.json') -Raw | ConvertFrom-Json
+    $buildChain = Get-Content (Join-Path $buildChainOutput 'build-chain.json') -Raw | ConvertFrom-Json
 
     Assert-True ($inventory.totals.projects -eq 1) 'Expected one project.'
     Assert-True ($inventory.totals.executableProjects -eq 1) 'Expected one executable project.'
@@ -78,6 +111,13 @@ timeout 1 > nul
     Assert-True ([double]$launcher.StartupScriptedDelaySeconds -eq 4) 'Expected four seconds total scripted startup delay.'
     Assert-True ([bool]$launcher.UsesOnlyFixedStartupDelay) 'Fixed-delay-only risk was not detected.'
     Assert-True ($launcher.ReadinessCheckCount -eq 0) 'Unexpected readiness check detected.'
+
+    Assert-True ($buildChain.totals.modernProjects -eq 1) 'Expected one modern project in build-chain audit.'
+    Assert-True ($buildChain.totals.packagingCopies -eq 1) 'Expected one packaging copy.'
+    Assert-True ($buildChain.totals.mappedDeploymentCopies -eq 1) 'Deployment copy was not mapped to the modern project.'
+    Assert-True ($buildChain.totals.strongCanonicalCandidates -eq 0) 'Legacy Win32 solution must not be accepted as canonical x64 build.'
+    Assert-True (@($buildChain.deployments | Where-Object MatchConfidence -eq 'exact-output-path').Count -eq 1) 'Expected exact deployment-to-project output match.'
+    Assert-True (@($buildChain.solutionCoverage | Where-Object CanonicalStatus -eq 'coverage-only-not-valid-for-requested-modern-build').Count -eq 1) 'Legacy solution risk was not identified.'
 
     Write-Host 'Phase 0 baseline tool self-test passed.'
 }
