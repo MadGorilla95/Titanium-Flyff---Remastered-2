@@ -68,6 +68,43 @@ function Resolve-SolutionPath {
     throw "Multiple .sln files were found. Set build.solution explicitly:$([Environment]::NewLine)$candidateList"
 }
 
+function Get-DiagnosticClassification {
+    param(
+        [Parameter(Mandatory = $true)][string]$Code,
+        [Parameter(Mandatory = $true)][string]$Line
+    )
+
+    if ($Code -eq "MSB8041" -or $Line -match "(?i)MFC libraries are required") {
+        return "missing-visual-studio-component"
+    }
+    if ($Code -eq "C1083" -and $Line -match "(?i)afx(?:win)?\.h") {
+        return "missing-mfc-header"
+    }
+    if ($Code -eq "C1083") {
+        return "missing-include-or-sdk"
+    }
+    if ($Code -eq "LNK1104") {
+        return "missing-link-input"
+    }
+    if ($Code -match "^C\d+$") {
+        return "compiler-diagnostic"
+    }
+    if ($Code -match "^LNK\d+$") {
+        return "linker-diagnostic"
+    }
+    if ($Code -match "^MSB\d+$") {
+        return "build-system-diagnostic"
+    }
+    return "unclassified-diagnostic"
+}
+
+function Normalize-DiagnosticLine {
+    param([Parameter(Mandatory = $true)][string]$Line)
+
+    $normalized = $Line -replace '^\s*\d+>', ''
+    return $normalized.Trim()
+}
+
 $repositoryPath = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 $solutionPath = Resolve-SolutionPath -Root $repositoryPath -RequestedSolution $Solution
 $msbuildPath = Resolve-MSBuildPath
@@ -80,6 +117,7 @@ $OutputDirectory = [System.IO.Path]::GetFullPath($OutputDirectory)
 
 $logPath = Join-Path $OutputDirectory "msbuild.log"
 $summaryPath = Join-Path $OutputDirectory "build-summary.json"
+$diagnosticsPath = Join-Path $OutputDirectory "build-diagnostics.csv"
 
 $arguments = @(
     $solutionPath,
@@ -113,23 +151,58 @@ $exitCode = $LASTEXITCODE
 $stopwatch.Stop()
 $outputLines | Set-Content -LiteralPath $logPath -Encoding UTF8
 
-$warningMatches = New-Object System.Collections.ArrayList
-$errorMatches = New-Object System.Collections.ArrayList
+$rawWarningLineCount = 0
+$rawErrorLineCount = 0
+$reportedWarningCount = $null
+$reportedErrorCount = $null
+$diagnostics = New-Object System.Collections.ArrayList
+$seenDiagnostics = @{}
+$failedProjects = New-Object System.Collections.ArrayList
 
 foreach ($line in $outputLines) {
+    if ($line -match '^\s*(?<count>\d+)\s+Warning\(s\)\s*$') {
+        $reportedWarningCount = [int]$Matches.count
+    }
+    if ($line -match '^\s*(?<count>\d+)\s+Error\(s\)\s*$') {
+        $reportedErrorCount = [int]$Matches.count
+    }
+    if ($line -match '(?i)Done Building Project\s+"(?<project>[^"]+)".*--\s+FAILED\.') {
+        $projectPath = $Matches.project
+        if (-not $failedProjects.Contains($projectPath)) {
+            [void]$failedProjects.Add($projectPath)
+        }
+    }
+
+    $severity = $null
+    $code = $null
     if ($line -match '(?i)\bwarning\s+(?<code>[A-Z]+\d+)\s*:') {
-        [void]$warningMatches.Add([pscustomobject]@{
-            Code = $Matches.code.ToUpperInvariant()
-            Line = $line
-        })
+        $severity = "warning"
+        $code = $Matches.code.ToUpperInvariant()
+        $rawWarningLineCount++
     }
-    if ($line -match '(?i)\berror\s+(?<code>[A-Z]+\d+)\s*:') {
-        [void]$errorMatches.Add([pscustomobject]@{
-            Code = $Matches.code.ToUpperInvariant()
-            Line = $line
-        })
+    elseif ($line -match '(?i)\berror\s+(?<code>[A-Z]+\d+)\s*:') {
+        $severity = "error"
+        $code = $Matches.code.ToUpperInvariant()
+        $rawErrorLineCount++
     }
+
+    if ($null -eq $severity) { continue }
+
+    $normalizedLine = Normalize-DiagnosticLine -Line $line
+    $key = "$severity|$code|$normalizedLine"
+    if ($seenDiagnostics.ContainsKey($key)) { continue }
+    $seenDiagnostics[$key] = $true
+
+    [void]$diagnostics.Add([pscustomobject]@{
+        Severity = $severity
+        Code = $code
+        Classification = Get-DiagnosticClassification -Code $code -Line $normalizedLine
+        Line = $normalizedLine
+    })
 }
+
+$warningMatches = @($diagnostics | Where-Object Severity -eq "warning")
+$errorMatches = @($diagnostics | Where-Object Severity -eq "error")
 
 $warningCodes = @(
     $warningMatches |
@@ -155,7 +228,31 @@ $errorCodes = @(
         Sort-Object Count -Descending
 )
 
+$failureClassifications = @(
+    $errorMatches |
+        Group-Object Classification |
+        ForEach-Object {
+            [pscustomobject]@{
+                Classification = $_.Name
+                Count = $_.Count
+            }
+        } |
+        Sort-Object Count -Descending
+)
+
+$parserMatchesReportedWarnings = if ($null -eq $reportedWarningCount) {
+    $null
+} else {
+    [bool]($warningMatches.Count -eq $reportedWarningCount)
+}
+$parserMatchesReportedErrors = if ($null -eq $reportedErrorCount) {
+    $null
+} else {
+    [bool]($errorMatches.Count -eq $reportedErrorCount)
+}
+
 $summary = [ordered]@{
+    schemaVersion = 2
     generatedAtUtc = [DateTime]::UtcNow.ToString("o")
     repositoryRoot = $repositoryPath
     solution = $solutionPath
@@ -169,19 +266,32 @@ $summary = [ordered]@{
     succeeded = [bool]($exitCode -eq 0)
     warningCount = $warningMatches.Count
     errorCount = $errorMatches.Count
+    rawWarningLineCount = $rawWarningLineCount
+    rawErrorLineCount = $rawErrorLineCount
+    reportedWarningCount = $reportedWarningCount
+    reportedErrorCount = $reportedErrorCount
+    parserMatchesReportedWarnings = $parserMatchesReportedWarnings
+    parserMatchesReportedErrors = $parserMatchesReportedErrors
     warningCodes = @($warningCodes)
     errorCodes = @($errorCodes)
+    failureClassifications = @($failureClassifications)
+    failedProjects = @($failedProjects)
+    diagnosticCount = $diagnostics.Count
+    diagnosticsPath = $diagnosticsPath
     logPath = $logPath
+    warningObservability = "Compiler warning counts are incomplete evidence when project configurations use /W0 or TurnOffAllWarnings."
 }
 
-$summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $summaryPath -Encoding UTF8
+@($diagnostics) | Export-Csv -LiteralPath $diagnosticsPath -NoTypeInformation -Encoding UTF8
+$summary | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $summaryPath -Encoding UTF8
 
 if ($exitCode -ne 0) {
     Write-Warning "Build failed with exit code $exitCode. The failure is recorded as baseline evidence; no source was changed."
 }
 
-[pscustomobject]@{
+$result = [pscustomobject]@{
     SummaryPath = $summaryPath
+    DiagnosticsPath = $diagnosticsPath
     LogPath = $logPath
     Succeeded = $summary.succeeded
     ExitCode = $exitCode
@@ -189,3 +299,8 @@ if ($exitCode -ne 0) {
     WarningCount = $warningMatches.Count
     ErrorCount = $errorMatches.Count
 }
+
+# Do not leak the native MSBuild exit code into callers. Build failure is evidence in
+# build-summary.json; tooling/runtime failures still throw through ErrorActionPreference.
+$global:LASTEXITCODE = 0
+$result
