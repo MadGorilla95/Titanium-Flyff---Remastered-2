@@ -8,6 +8,9 @@ param(
     [switch]$IncludeRuntime,
     [switch]$IncludeNetwork,
     [switch]$IncludeLogTimings,
+    [string[]]$BuildInputSearchRoot = @(),
+    [switch]$IncludeAbsoluteBuildInputPaths,
+    [switch]$SkipBuildInputProvenance,
     [switch]$SkipPreflight,
     [switch]$AllowPreflightErrors,
     [switch]$ForceInitializeConfig
@@ -39,6 +42,44 @@ else {
 }
 
 $config = Get-Content -LiteralPath $ConfigPath -Raw | ConvertFrom-Json
+
+$provenanceResult = $null
+if (-not $SkipBuildInputProvenance) {
+    $maxCandidates = 100
+    if ($config.build.PSObject.Properties['provenanceMaxCandidatesPerInput']) {
+        $maxCandidates = [int]$config.build.provenanceMaxCandidatesPerInput
+    }
+
+    $includeAbsolutePaths = [bool]$IncludeAbsoluteBuildInputPaths
+    if ($config.build.PSObject.Properties['provenanceIncludeAbsoluteExternalPaths']) {
+        $includeAbsolutePaths = $includeAbsolutePaths -or [bool]$config.build.provenanceIncludeAbsoluteExternalPaths
+    }
+
+    $scanLegacyPreprocessed = $true
+    if ($config.build.PSObject.Properties['provenanceScanLegacyPreprocessedReferences']) {
+        $scanLegacyPreprocessed = [bool]$config.build.provenanceScanLegacyPreprocessedReferences
+    }
+
+    $provenanceParameters = @{
+        ConfigPath = $ConfigPath
+        MaxCandidatesPerInput = $maxCandidates
+    }
+    if ($BuildInputSearchRoot.Count -gt 0) {
+        $provenanceParameters.AdditionalSearchRoot = $BuildInputSearchRoot
+    }
+    if ($includeAbsolutePaths) {
+        $provenanceParameters.IncludeAbsoluteExternalPaths = $true
+    }
+    if (-not $scanLegacyPreprocessed) {
+        $provenanceParameters.SkipLegacyPreprocessedReferences = $true
+    }
+
+    Write-Host ''
+    Write-Host 'Resolving Titanium build-input provenance...'
+    $provenanceResult = & (Join-Path $PSScriptRoot 'Resolve-BuildInputOrigins.ps1') @provenanceParameters
+    Write-Host "Build inputs found: $($provenanceResult.FoundInputCount)/$($provenanceResult.RequiredInputCount)"
+    Write-Host "Provenance report: $($provenanceResult.Markdown)"
+}
 
 $runBuild = [bool]$IncludeBuild
 $runRuntime = [bool]$IncludeRuntime
@@ -125,6 +166,7 @@ if ($runBuild -and $null -ne $buildSucceeded -and -not $buildSucceeded) {
     Success = $overallSuccess
     Mode = $Mode
     ConfigPath = $ConfigPath
+    BuildInputProvenance = $provenanceResult
     Preflight = $preflightResult
     Audit = $auditResult
     RunDirectory = $auditResult.RunDirectory

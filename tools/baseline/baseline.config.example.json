@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "repositoryRoot": "../..",
   "sourceRoot": "Source/Source",
   "artifactRoot": "artifacts/baseline",
@@ -9,33 +9,45 @@
     "configuration": "Release",
     "platform": "x64",
     "additionalArguments": [],
+    "provenanceAdditionalSearchRoots": [],
+    "provenanceMaxCandidatesPerInput": 100,
+    "provenanceIncludeAbsoluteExternalPaths": false,
+    "provenanceScanLegacyPreprocessedReferences": true,
     "requiredInputs": [
       {
         "name": "Lang.h",
         "candidatePaths": [
+          "Source/Resource/Lang.h",
           "Source/resource/Lang.h",
-          "Source/Source/Resource/Lang.h"
+          "Source/Source/Resource/Lang.h",
+          "Source/Source/resource/Lang.h"
         ]
       },
       {
         "name": "Define.h",
         "candidatePaths": [
+          "Source/Resource/Define.h",
           "Source/resource/Define.h",
-          "Source/Source/Resource/Define.h"
+          "Source/Source/Resource/Define.h",
+          "Source/Source/resource/Define.h"
         ]
       },
       {
         "name": "defineItem.h",
         "candidatePaths": [
+          "Source/Resource/defineItem.h",
           "Source/resource/defineItem.h",
-          "Source/Source/Resource/defineItem.h"
+          "Source/Source/Resource/defineItem.h",
+          "Source/Source/resource/defineItem.h"
         ]
       },
       {
         "name": "defineitemkind.h",
         "candidatePaths": [
+          "Source/Resource/defineitemkind.h",
           "Source/resource/defineitemkind.h",
-          "Source/Source/Resource/defineitemkind.h"
+          "Source/Source/Resource/defineitemkind.h",
+          "Source/Source/resource/defineitemkind.h"
         ]
       }
     ]
