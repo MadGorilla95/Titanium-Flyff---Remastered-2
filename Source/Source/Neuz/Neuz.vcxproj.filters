@@ -1,0 +1,1439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\_Common\accessory.cpp" />
+    <ClCompile Include="..\_Common\AegonShopFinder.cpp" />
+    <ClCompile Include="..\_Common\BetterCache.cpp" />
+    <ClCompile Include="..\_Common\CZoneText.cpp" />
+    <ClCompile Include="..\_Common\MonsterHunt.cpp" />
+    <ClCompile Include="CampusHelper.cpp" />
+    <ClCompile Include="clord.cpp" />
+    <ClCompile Include="Cloth.cpp" />
+    <ClCompile Include="..\_Common\collecting.cpp" />
+    <ClCompile Include="couplehelper.cpp" />
+    <ClCompile Include="DPCertified.cpp" />
+    <ClCompile Include="DPClient.cpp" />
+    <ClCompile Include="DPClientGuildWar.cpp" />
+    <ClCompile Include="DPClientLux.cpp" />
+    <ClCompile Include="DPCollectClient.cpp" />
+    <ClCompile Include="DPLoginClient.cpp" />
+    <ClCompile Include="HelperWebBox.cpp" />
+    <ClCompile Include="..\_Common\langman.cpp" />
+    <ClCompile Include="..\_Common\lord.cpp" />
+    <ClCompile Include="..\_Common\memtrace.cpp" />
+    <ClCompile Include="Network.cpp" />
+    <ClCompile Include="Neuz.cpp" />
+    <ClCompile Include="NeuzEnemy.cpp" />
+    <ClCompile Include="NeuzMsgProc.cpp" />
+    <ClCompile Include="OpenLoadWnd.cpp" />
+    <ClCompile Include="..\_Common\playerdata.cpp" />
+    <ClCompile Include="..\_Common\pocket.cpp" />
+    <ClCompile Include="..\_Common\rtmessenger.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="TimeLimit.cpp" />
+    <ClCompile Include="WebBox.cpp" />
+    <ClCompile Include="WebCtrl.cpp" />
+    <ClCompile Include="WorldMap.cpp" />
+    <ClCompile Include="..\_DirectX\d3dapp.cpp" />
+    <ClCompile Include="..\_DirectX\d3denumeration.cpp" />
+    <ClCompile Include="..\_DirectX\d3dfont.cpp" />
+    <ClCompile Include="..\_DirectX\d3dsettings.cpp" />
+    <ClCompile Include="..\_DirectX\d3dutil.cpp" />
+    <ClCompile Include="..\_DirectX\dsutil.cpp" />
+    <ClCompile Include="..\_DirectX\dxutil.cpp" />
+    <ClCompile Include="..\_Interface\FuncApplet.cpp" />
+    <ClCompile Include="..\_Interface\FuncTextCmd.cpp" />
+    <ClCompile Include="..\_Common\ResManager.cpp" />
+    <ClCompile Include="..\_Interface\Clipboard.cpp" />
+    <ClCompile Include="..\_Interface\ITheme.cpp" />
+    <ClCompile Include="..\_Interface\tooltip.cpp" />
+    <ClCompile Include="..\_AIInterface\AIInterface.cpp" />
+    <ClCompile Include="..\_Common\buff.cpp" />
+    <ClCompile Include="..\_Common\Campus.cpp" />
+    <ClCompile Include="..\_Common\Chatting.cpp" />
+    <ClCompile Include="..\_Common\Continent.cpp" />
+    <ClCompile Include="..\_Common\CooltimeMgr.cpp" />
+    <ClCompile Include="..\_Common\couple.cpp" />
+    <ClCompile Include="..\_Common\debug.cpp" />
+    <ClCompile Include="..\_Common\DefineCommon.cpp" />
+    <ClCompile Include="..\_common\eveschool.cpp" />
+    <ClCompile Include="..\_Common\Exchange.cpp" />
+    <ClCompile Include="..\_common\flyffevent.cpp" />
+    <ClCompile Include="..\_Common\GuildCombat1to1.cpp" />
+    <ClCompile Include="..\_Common\GuildHouse.cpp" />
+    <ClCompile Include="..\_Common\honor.cpp" />
+    <ClCompile Include="..\_Common\Housing.cpp" />
+    <ClCompile Include="..\_Common\HwOption.cpp" />
+    <ClCompile Include="..\_Common\lordskill.cpp" />
+    <ClCompile Include="..\_Common\LuaBase.cpp" />
+    <ClCompile Include="..\_Common\MapComboBoxData.cpp" />
+    <ClCompile Include="..\_Common\MapInformationManager.cpp" />
+    <ClCompile Include="..\_Common\MapMonsterInformation.cpp" />
+    <ClCompile Include="..\_Common\MapMonsterInformationPack.cpp" />
+    <ClCompile Include="..\_Common\messenger.cpp" />
+    <ClCompile Include="..\_Common\MiniGame.cpp" />
+    <ClCompile Include="..\_Common\MiniGameBase.cpp" />
+    <ClCompile Include="..\_Common\moverbuff.cpp" />
+    <ClCompile Include="..\_Common\Particle.cpp" />
+    <ClCompile Include="..\_Common\partyquest.cpp" />
+    <ClCompile Include="..\_Common\PCBang.cpp" />
+    <ClCompile Include="..\_Common\piercing.cpp" />
+    <ClCompile Include="..\_Common\post.cpp" />
+    <ClCompile Include="..\_Common\profile.cpp" />
+    <ClCompile Include="..\_Common\ProfileInfo.cpp" />
+    <ClCompile Include="..\_Common\Project.cpp" />
+    <ClCompile Include="..\_Common\ProjectCmn.cpp" />
+    <ClCompile Include="..\_Common\ProjectLux.cpp" />
+    <ClCompile Include="..\_Common\RainbowNPCInformation.cpp" />
+    <ClCompile Include="..\_Common\RainbowNPCInformationPack.cpp" />
+    <ClCompile Include="..\_Common\RainbowRace.cpp" />
+    <ClCompile Include="..\_Common\randomoption.cpp" />
+    <ClCompile Include="..\_Common\Rijndael.cpp" />
+    <ClCompile Include="..\_Common\SecretRoom.cpp" />
+    <ClCompile Include="..\_Common\serialnumber.cpp" />
+    <ClCompile Include="..\_Common\spevent.cpp" />
+    <ClCompile Include="..\_Common\Tax.cpp" />
+    <ClCompile Include="..\_Common\TeleportationIconInfo.cpp" />
+    <ClCompile Include="TexturePool.cpp" />
+    <ClCompile Include="..\_Common\ticket.cpp" />
+    <ClCompile Include="..\_Common\TreeInformation.cpp" />
+    <ClCompile Include="..\_Common\UltimateWeapon.cpp" />
+    <ClCompile Include="..\_Common\UserMarkPositionInfo.cpp" />
+    <ClCompile Include="..\_Common\yUtil.cpp" />
+    <ClCompile Include="..\_Common\lod.cpp" />
+    <ClCompile Include="..\_Common\CommonCtrl.cpp" />
+    <ClCompile Include="..\_Common\CreateObj.cpp" />
+    <ClCompile Include="..\_Common\Ctrl.cpp" />
+    <ClCompile Include="..\_Common\Item.cpp" />
+    <ClCompile Include="..\_Common\Light.cpp" />
+    <ClCompile Include="..\_Common\Mover.cpp" />
+    <ClCompile Include="..\_Common\MoverActEvent.cpp" />
+    <ClCompile Include="..\_Common\MoverAttack.cpp" />
+    <ClCompile Include="..\_Common\MoverEquip.cpp" />
+    <ClCompile Include="..\_Common\MoverItem.cpp" />
+    <ClCompile Include="..\_Common\MoverMove.cpp" />
+    <ClCompile Include="..\_Common\MoverMsg.cpp" />
+    <ClCompile Include="..\_Common\MoverParam.cpp" />
+    <ClCompile Include="..\_Common\MoverRender.cpp" />
+    <ClCompile Include="..\_Common\MoverSkill.cpp" />
+    <ClCompile Include="..\_Common\Obj.cpp" />
+    <ClCompile Include="..\_Common\ObjSerialize.cpp" />
+    <ClCompile Include="..\_common\ObjSerializeOpt.cpp" />
+    <ClCompile Include="..\_Common\PathObj.cpp" />
+    <ClCompile Include="..\_Common\pet.cpp" />
+    <ClCompile Include="..\_Common\Region.cpp" />
+    <ClCompile Include="..\_Common\Sfx.cpp" />
+    <ClCompile Include="..\_Common\sfxbase.cpp" />
+    <ClCompile Include="..\_Common\SfxObj.cpp" />
+    <ClCompile Include="..\_Common\Ship.cpp" />
+    <ClCompile Include="..\_Common\SkillInfluence.cpp" />
+    <ClCompile Include="..\_Common\weather.cpp" />
+    <ClCompile Include="..\_Common\billboard.cpp" />
+    <ClCompile Include="..\_Common\Bone.cpp" />
+    <ClCompile Include="..\_Common\Material.cpp" />
+    <ClCompile Include="..\_Common\Model.cpp" />
+    <ClCompile Include="..\_Common\ModelGlobal.cpp" />
+    <ClCompile Include="..\_Common\ModelMng.cpp" />
+    <ClCompile Include="..\_Common\ModelObject.cpp" />
+    <ClCompile Include="..\_Common\Object3D.cpp" />
+    <ClCompile Include="..\_Common\ParticleMng.cpp" />
+    <ClCompile Include="..\_Common\Shader.cpp" />
+    <ClCompile Include="..\_Common\TailEffectMng.cpp" />
+    <ClCompile Include="..\_Common\scanner.cpp" />
+    <ClCompile Include="..\_Common\Script.cpp" />
+    <ClCompile Include="..\_common\guild.cpp" />
+    <ClCompile Include="..\_common\guildquest.cpp" />
+    <ClCompile Include="..\_Common\GuildRender.cpp" />
+    <ClCompile Include="..\_common\guildwar.cpp" />
+    <ClCompile Include="..\_Common\party.cpp" />
+    <ClCompile Include="..\_Common\Camera.cpp" />
+    <ClCompile Include="..\_Common\Environment.cpp" />
+    <ClCompile Include="..\_Common\Respawn.cpp" />
+    <ClCompile Include="..\_Common\SkyBox.cpp" />
+    <ClCompile Include="..\_Common\TerrainMng.cpp" />
+    <ClCompile Include="..\_Common\World.cpp" />
+    <ClCompile Include="..\_Common\World3D.cpp" />
+    <ClCompile Include="..\_Common\WorldEnvironment.cpp" />
+    <ClCompile Include="..\_Common\WorldFile.cpp" />
+    <ClCompile Include="..\_Common\WorldIntersect.cpp" />
+    <ClCompile Include="..\_Common\worldmng.cpp" />
+    <ClCompile Include="..\_Common\2DRender.cpp" />
+    <ClCompile Include="..\_Common\EditString.cpp" />
+    <ClCompile Include="..\_Common\File.cpp" />
+    <ClCompile Include="..\_Common\Graphic3D.cpp" />
+    <ClCompile Include="..\_Common\Music.cpp" />
+    <ClCompile Include="..\_Common\Music2.cpp" />
+    <ClCompile Include="..\_Common\path.cpp" />
+    <ClCompile Include="..\_Common\targa.cpp" />
+    <ClCompile Include="..\_Common\timer.cpp" />
+    <ClCompile Include="..\_Common\vutil.cpp" />
+    <ClCompile Include="..\_Common\xUtil.cpp" />
+    <ClCompile Include="..\_Common\xUtil3D.cpp" />
+    <ClCompile Include="..\_Common\ClientMsg.cpp" />
+    <ClCompile Include="..\_Common\DialogMsg.cpp" />
+    <ClCompile Include="..\_Common\Console.cpp" />
+    <ClCompile Include="..\_Common\ConsoleFunc.cpp" />
+    <ClCompile Include="..\_Network\tools.cpp" />
+    <ClCompile Include="..\_network\net\src\buffer.cpp" />
+    <ClCompile Include="..\_network\net\src\clientsock.cpp" />
+    <ClCompile Include="..\_network\net\src\clientsocke.cpp" />
+    <ClCompile Include="..\_Network\Net\Src\crc.cpp" />
+    <ClCompile Include="..\_network\net\src\dpmng.cpp" />
+    <ClCompile Include="..\_network\net\src\dpsock.cpp" />
+    <ClCompile Include="..\_network\net\src\serversock.cpp" />
+    <ClCompile Include="..\_network\net\src\serversocke.cpp" />
+    <ClCompile Include="..\_network\net\src\sock.cpp" />
+    <ClCompile Include="..\_network\misc\src\ar.cpp" />
+    <ClCompile Include="..\_Network\Misc\Src\heapmng.cpp" />
+    <ClCompile Include="..\_Multimedia\WRITEAVI.CPP" />
+    <ClCompile Include="..\_AIInterface\Action.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMover.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverCollision.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverCtrl.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverDmg.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverMsg.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverMsg2.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverState.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionMoverState2.cpp" />
+    <ClCompile Include="..\_AIInterface\ActionShip.cpp" />
+    <ClCompile Include="..\_UnhandledException\ExceptionHandler.cpp" />
+    <ClCompile Include="..\_Common\AegonLootBox.cpp" />
+    <ClCompile Include="..\_Interface\Wnd2ndPassword.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndAdminCreateItem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndAegonLootBox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndAwakening.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndBagEx.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndBank.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndBase.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndBlessingCancel.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndChangeFace.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndChangeName.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndChatFilter.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndChattingBlockingList.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndCloseExistingConnection.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndCollecting.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndColosseum.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndCommand.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndCommItem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndCommunication.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndControl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndCreateOwnTitle.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndDebugInfo.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndDialog.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndDuelConfirm.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndEditCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndField.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndFriendConFirm.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndFriendCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndGiftbox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuideSystem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuild.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndGuildBank.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildCombat1to1.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildHouse.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildMerit.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildName.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildTabApp.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildTabInfo.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildTabMember.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildTabPower.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildTabWar.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildVote.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildWarDecl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildWarGiveUp.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildWarPeace.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildWarPeaceConfirm.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndGuildWarRequest.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndHelp.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndHelperWebBox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndHousing.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndIndirectTalk.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndInvenRemoveItem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndItemCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndLord.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndLvReqDown.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMailRequestingBox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndManager.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMap.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMapEx.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMessageBox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMessenger.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMessengerCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMessengerSearch.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMiniGame.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndModelView.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMonsterHunt.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndMotion.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndNeuz.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndNotice.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndOption.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndOptionGame.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndParty.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPartyChangeTroup.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPartyConfirm.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPartyCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndPartyFind.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPartyQuick.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPetRes.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPetSys.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPiercing.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndPremiumMenu.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndPvp.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndQuest.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndQuestQuickInfo.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndQuitRoom.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRainbowRace.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRankGuild.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRankInfo.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRankWar.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndRegVend.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRepairItem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRepairItemCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndRoomList.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSealChar.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSecretRoom.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSelectCh.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSelectVillage.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndShop.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndShopFinder.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSummonAngel.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSummonFriend.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndTaskBar.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndText.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndTitle.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndTradeCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndTutorial.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndUpgradeBase.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndUserMarkNameChanger.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndVendor.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndVendorBuy.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_interface\WndVendorCtrl.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndWebBox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndWikiItems.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndWorld.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndWorldControlPlayer.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AES.cpp" />
+    <ClCompile Include="..\_Common\AegonTournament.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonTournament.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndViewInv.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndPetfilter.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\Badge.cpp" />
+    <ClCompile Include="..\XML\pugixml.cpp" />
+    <ClCompile Include="..\XML\XMLWrapper.cpp" />
+    <ClCompile Include="..\XML\XmlWrapperBadge.cpp" />
+    <ClCompile Include="WndGuildColor.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndGuildFinder.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndMonsterClash.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndReport.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndAutoShout.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndSandbox.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndAegonSeasonPass.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonSeasonPass.cpp" />
+    <ClCompile Include="..\_Common\AegonAchievementSystem.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonAchievementSystem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord.cpp" />
+    <ClCompile Include="..\Discord\src\connection_win.cpp">
+      <Filter>DiscordRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Discord\src\discord_register_win.cpp">
+      <Filter>DiscordRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Discord\src\discord_rpc.cpp">
+      <Filter>DiscordRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Discord\src\dllmain.cpp">
+      <Filter>DiscordRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Discord\src\rpc_connection.cpp">
+      <Filter>DiscordRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Discord\src\serialization.cpp">
+      <Filter>DiscordRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="WndTicketsDetails.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndMonsterWiki.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndSites.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndNameColor.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonLastOnlineMng.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonCrafting.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonCrafting.cpp" />
+    <ClCompile Include="WndPlayerPurge.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndWeaponMerge.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndDropInfo.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndAegonSystemShout.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndSwitchEquip.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonPvPRanking.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonPvPRanking.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="AegonThemeSwitcherMng.cpp" />
+    <ClCompile Include="WndInfoDungeonList.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndPetGlow.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndModsManager.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="apngHelper.cpp" />
+    <ClCompile Include="WndDpsMeter.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatLog.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndGuildTabBuffs.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonEmoticonMng.cpp" />
+    <ClCompile Include="WndCrystal.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonIngameShop.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonIngameShop.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndFFA.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WndPlayerRanking.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\PlayerWar.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonFTool.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonPvPMinigames.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonPvPMinigames.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonShopDesign.cpp" />
+    <ClCompile Include="..\_Common\AegonBossMechanics.cpp" />
+    <ClCompile Include="..\_Interface\WndAegonMessenger.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Interface\WndAegonTeleporter.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\_Common\AegonTeleportMng.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\_Common\accessory.h" />
+    <ClInclude Include="..\_Common\AegonShopFinder.h" />
+    <ClInclude Include="..\_Common\BetterCache.h" />
+    <ClInclude Include="..\_Common\CZoneText.h" />
+    <ClInclude Include="..\_Common\MonsterHunt.h" />
+    <ClInclude Include="CNTREVNT.h" />
+    <ClInclude Include="couplehelper.h" />
+    <ClInclude Include="DPCertified.h" />
+    <ClInclude Include="DPClient.h" />
+    <ClInclude Include="DPLoginClient.h" />
+    <ClInclude Include="HelperWebBox.h" />
+    <ClInclude Include="..\_Common\lord.h" />
+    <ClInclude Include="..\_Common\memtrace.h" />
+    <ClInclude Include="..\_Common\mss.h" />
+    <ClInclude Include="Network.h" />
+    <ClInclude Include="Neuz.h" />
+    <ClInclude Include="NeuzEnemy.h" />
+    <ClInclude Include="OpenLoadWnd.h" />
+    <ClInclude Include="..\_Common\playerdata.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="TimeLimit.h" />
+    <ClInclude Include="VersionCommon.h" />
+    <ClInclude Include="WebBox.h" />
+    <ClInclude Include="WebCtrl.h" />
+    <ClInclude Include="WorldMap.h" />
+    <ClInclude Include="..\_Common\xuzhu.h" />
+    <ClInclude Include="..\_DirectX\d3dapp.h" />
+    <ClInclude Include="..\_DirectX\d3denumeration.h" />
+    <ClInclude Include="..\_DirectX\d3dfont.h" />
+    <ClInclude Include="..\_DirectX\d3dres.h" />
+    <ClInclude Include="..\_DirectX\d3dsettings.h" />
+    <ClInclude Include="..\_DirectX\d3dutil.h" />
+    <ClInclude Include="..\_DirectX\dsutil.h" />
+    <ClInclude Include="..\_DirectX\dxutil.h" />
+    <ClInclude Include="..\_Interface\AppDefine.h" />
+    <ClInclude Include="..\_Interface\FuncTextCmd.h" />
+    <ClInclude Include="..\_Common\ResManager.h" />
+    <ClInclude Include="..\_Interface\Clipboard.h" />
+    <ClInclude Include="..\_Interface\ITheme.h" />
+    <ClInclude Include="..\_Interface\tooltip.h" />
+    <ClInclude Include="..\_Common\authorization.h" />
+    <ClInclude Include="..\_Common\buff.h" />
+    <ClInclude Include="..\_Common\Chatting.h" />
+    <ClInclude Include="..\_Common\Continent.h" />
+    <ClInclude Include="..\_Common\CooltimeMgr.h" />
+    <ClInclude Include="..\_Common\debug.h" />
+    <ClInclude Include="..\_Common\DefineCommon.h" />
+    <ClInclude Include="..\_common\eveschool.h" />
+    <ClInclude Include="..\_Common\Exchange.h" />
+    <ClInclude Include="..\_common\flyffevent.h" />
+    <ClInclude Include="..\_Common\fmod.h" />
+    <ClInclude Include="..\_Common\fmod_errors.h" />
+    <ClInclude Include="..\_Common\fmoddyn.h" />
+    <ClInclude Include="..\_Common\GuildCombat1to1.h" />
+    <ClInclude Include="..\_Common\GuildHouse.h" />
+    <ClInclude Include="..\_Common\honor.h" />
+    <ClInclude Include="..\_Common\Housing.h" />
+    <ClInclude Include="..\_Common\HwOption.h" />
+    <ClInclude Include="..\_Common\LuaBase.h" />
+    <ClInclude Include="..\_Common\MapComboBoxData.h" />
+    <ClInclude Include="..\_Common\MapInformationManager.h" />
+    <ClInclude Include="..\_Common\MapMonsterInformation.h" />
+    <ClInclude Include="..\_Common\MapMonsterInformationPack.h" />
+    <ClInclude Include="..\_Common\messenger.h" />
+    <ClInclude Include="..\_Common\MiniGame.h" />
+    <ClInclude Include="..\_Common\Particle.h" />
+    <ClInclude Include="..\_Common\partyquest.h" />
+    <ClInclude Include="..\_Common\PCBang.h" />
+    <ClInclude Include="..\_Common\Piercing.h" />
+    <ClInclude Include="..\_Common\post.h" />
+    <ClInclude Include="..\_Common\profile.h" />
+    <ClInclude Include="..\_Common\ProfileInfo.h" />
+    <ClInclude Include="..\_Common\Project.h" />
+    <ClInclude Include="..\_Common\ProjectCmn.h" />
+    <ClInclude Include="..\_Common\RainbowNPCInformation.h" />
+    <ClInclude Include="..\_Common\RainbowNPCInformationPack.h" />
+    <ClInclude Include="..\_Common\Respawn.h" />
+    <ClInclude Include="..\_Common\Rijndael.h" />
+    <ClInclude Include="..\_Common\SecretRoom.h" />
+    <ClInclude Include="..\_Common\serialnumber.h" />
+    <ClInclude Include="..\_Common\spevent.h" />
+    <ClInclude Include="..\_Common\Tax.h" />
+    <ClInclude Include="..\_Common\TeleportationIconInfo.h" />
+    <ClInclude Include="TexturePool.h" />
+    <ClInclude Include="..\_Common\ticket.h" />
+    <ClInclude Include="..\_Common\TreeInformation.h" />
+    <ClInclude Include="..\_Common\UltimateWeapon.h" />
+    <ClInclude Include="..\_Common\UserMarkPositionInfo.h" />
+    <ClInclude Include="..\_Common\yUtil.h" />
+    <ClInclude Include="..\_Common\landscape.h" />
+    <ClInclude Include="..\_Common\patch.h" />
+    <ClInclude Include="..\_Common\CommonCtrl.h" />
+    <ClInclude Include="..\_Common\CreateObj.h" />
+    <ClInclude Include="..\_Common\Ctrl.h" />
+    <ClInclude Include="..\_Common\Item.h" />
+    <ClInclude Include="..\_Common\Light.h" />
+    <ClInclude Include="..\_Common\Mover.h" />
+    <ClInclude Include="..\_Common\MoverMsg.h" />
+    <ClInclude Include="..\_Common\Obj.h" />
+    <ClInclude Include="..\_Common\PathObj.h" />
+    <ClInclude Include="..\_Common\Region.h" />
+    <ClInclude Include="..\_Common\Sfx.h" />
+    <ClInclude Include="..\_Common\sfxbase.h" />
+    <ClInclude Include="..\_Common\Ship.h" />
+    <ClInclude Include="..\_Common\SkillInfluence.h" />
+    <ClInclude Include="..\_Common\weather.h" />
+    <ClInclude Include="..\_Common\billboard.h" />
+    <ClInclude Include="..\_Common\Bone.h" />
+    <ClInclude Include="..\_Common\Material.h" />
+    <ClInclude Include="..\_Common\Model.h" />
+    <ClInclude Include="..\_Common\ModelGlobal.h" />
+    <ClInclude Include="..\_Common\ModelMng.h" />
+    <ClInclude Include="..\_Common\ModelObject.h" />
+    <ClInclude Include="..\_Common\Object3D.h" />
+    <ClInclude Include="..\_Common\ParticleMng.h" />
+    <ClInclude Include="..\_Common\Shader.h" />
+    <ClInclude Include="..\_Common\TailEffectMng.h" />
+    <ClInclude Include="..\_Common\scanner.h" />
+    <ClInclude Include="..\_Common\Script.h" />
+    <ClInclude Include="..\_common\guild.h" />
+    <ClInclude Include="..\_common\guildquest.h" />
+    <ClInclude Include="..\_Common\GuildRender.h" />
+    <ClInclude Include="..\_common\guildwar.h" />
+    <ClInclude Include="..\_Common\party.h" />
+    <ClInclude Include="..\_Common\Camera.h" />
+    <ClInclude Include="..\_Common\Environment.h" />
+    <ClInclude Include="..\_Common\SkyBox.h" />
+    <ClInclude Include="..\_Common\TerrainMng.h" />
+    <ClInclude Include="..\_Common\World.h" />
+    <ClInclude Include="..\_Common\worldmng.h" />
+    <ClInclude Include="..\_Common\2DRender.h" />
+    <ClInclude Include="..\_Common\data.h" />
+    <ClInclude Include="..\_Common\EditString.h" />
+    <ClInclude Include="..\_Common\File.h" />
+    <ClInclude Include="..\_Common\Graphic3D.h" />
+    <ClInclude Include="..\_Common\Music.h" />
+    <ClInclude Include="..\_Common\path.h" />
+    <ClInclude Include="..\_Common\targa.h" />
+    <ClInclude Include="..\_Common\timer.h" />
+    <ClInclude Include="..\_Common\vutil.h" />
+    <ClInclude Include="..\_Common\xUtil.h" />
+    <ClInclude Include="..\_Common\xUtil3D.h" />
+    <ClInclude Include="..\_Common\ClientMsg.h" />
+    <ClInclude Include="..\_Common\DialogMsg.h" />
+    <ClInclude Include="..\_Common\Console.h" />
+    <ClInclude Include="..\_Common\ConsoleCommon.h" />
+    <ClInclude Include="..\_network\CmnHdr.h" />
+    <ClInclude Include="..\_Network\ErrorCode.h" />
+    <ClInclude Include="..\_network\ggsrv.h" />
+    <ClInclude Include="..\_network\MsgHdr.h" />
+    <ClInclude Include="..\_Network\tools.h" />
+    <ClInclude Include="..\_network\net\include\buffer.h" />
+    <ClInclude Include="..\_network\net\include\clientsock.h" />
+    <ClInclude Include="..\_network\net\include\clientsocke.h" />
+    <ClInclude Include="..\_Network\Net\Include\crc.h" />
+    <ClInclude Include="..\_network\net\include\dpmng.h" />
+    <ClInclude Include="..\_network\net\include\dpsock.h" />
+    <ClInclude Include="..\_network\net\include\serversock.h" />
+    <ClInclude Include="..\_network\net\include\serversocke.h" />
+    <ClInclude Include="..\_network\net\include\sock.h" />
+    <ClInclude Include="..\_network\mcl\include\cmcl.h" />
+    <ClInclude Include="..\_network\mcl\include\cmclautolock.h" />
+    <ClInclude Include="..\_network\mcl\include\cmclcritsec.h" />
+    <ClInclude Include="..\_network\misc\include\ar.h" />
+    <ClInclude Include="..\_network\misc\include\chassert.h" />
+    <ClInclude Include="..\_network\misc\include\heapmng.h" />
+    <ClInclude Include="..\_network\misc\include\mempool.h" />
+    <ClInclude Include="..\_network\misc\include\MEMPOOLER.H" />
+    <ClInclude Include="..\_network\misc\include\memspy.h" />
+    <ClInclude Include="..\_network\misc\include\Misc.h" />
+    <ClInclude Include="..\_network\misc\include\MyMap.h" />
+    <ClInclude Include="..\_network\misc\include\ObjMap.h" />
+    <ClInclude Include="..\_network\misc\include\tickcount.h" />
+    <ClInclude Include="..\_Multimedia\WriteAVI.h" />
+    <ClInclude Include="..\_AIInterface\Action.h" />
+    <ClInclude Include="..\_AIInterface\ActionMover.h" />
+    <ClInclude Include="..\_AIInterface\ActionShip.h" />
+    <ClInclude Include="..\_UnhandledException\ExceptionHandler.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="CampusHelper.h" />
+    <ClInclude Include="clord.h" />
+    <ClInclude Include="Cloth.h" />
+    <ClInclude Include="..\_Common\collecting.h" />
+    <ClInclude Include="DPCollectClient.h" />
+    <ClInclude Include="..\_Common\langman.h" />
+    <ClInclude Include="..\_Common\rtmessenger.h" />
+    <ClInclude Include="..\_Common\AegonLootBox.h" />
+    <ClInclude Include="..\_Interface\Wnd2ndPassword.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndAdminCreateItem.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndAegonLootBox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndAwakening.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndBagEx.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndBank.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndBase.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndBlessingCancel.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndChangeFace.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndChangeName.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndChatFilter.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndChattingBlockingList.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndCloseExistingConnection.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndCollecting.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndColosseum.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndCommand.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndCommItem.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndCommunication.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndControl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndCreateOwnTitle.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndDebugInfo.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndDialog.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndDuelConfirm.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndEditCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndField.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndFriendConFirm.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndFriendCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndGiftbox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuideSystem.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuild.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndGuildBank.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildCombat1to1.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildHouse.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildMerit.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildName.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildTabApp.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildTabInfo.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildTabMember.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildTabPower.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildTabWar.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildVote.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildWarDecl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildWarGiveUp.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildWarPeace.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildWarPeaceConfirm.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndGuildWarRequest.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndHelp.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndHelperWebBox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndHousing.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndIndirectTalk.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndInvenRemoveItem.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndItemCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndLord.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndLvReqDown.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMailRequestingBox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndManager.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMap.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMapEx.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMessageBox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMessenger.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMessengerCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMessengerSearch.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMiniGame.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndModelView.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMonsterHunt.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndMotion.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndNeuz.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndNotice.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndOption.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndOptionGame.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndParty.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPartyChangeTroup.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPartyConfirm.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPartyCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndPartyFind.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPartyQuick.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPetRes.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPetSys.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPiercing.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndPremiumMenu.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndPvp.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndQuest.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndQuestQuickInfo.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndQuitRoom.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRainbowRace.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRankGuild.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRankInfo.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRankWar.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndRegVend.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRepairItem.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRepairItemCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndRoomList.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSealChar.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSecretRoom.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSelectCh.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSelectVillage.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndShop.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndShopFinder.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSummonAngel.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSummonFriend.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndTaskBar.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndText.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndTitle.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndTradeCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndTutorial.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndUpgradeBase.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndUserMarkNameChanger.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndVendor.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndVendorBuy.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_interface\WndVendorCtrl.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndWebBox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndWikiItems.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndWorld.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AES.h" />
+    <ClInclude Include="..\_Common\AegonTournament.h" />
+    <ClInclude Include="..\_Interface\WndAegonTournament.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndViewInv.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndPetfilter.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\defineFilter.h" />
+    <ClInclude Include="..\_Common\Badge.h" />
+    <ClInclude Include="..\XML\pugiconfig.hpp" />
+    <ClInclude Include="..\XML\pugixml.hpp" />
+    <ClInclude Include="..\XML\XMLWrapper.h" />
+    <ClInclude Include="..\XML\XmlWrapperBadge.h" />
+    <ClInclude Include="WndGuildColor.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndGuildFinder.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndMonsterClash.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndReport.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndAutoShout.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndSandbox.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndAegonSeasonPass.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonSeasonPass.h" />
+    <ClInclude Include="..\_Common\AegonAchievementSystem.h" />
+    <ClInclude Include="..\_Interface\WndAegonAchievementSystem.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord.h" />
+    <ClInclude Include="..\Discord\src\connection.h">
+      <Filter>DiscordRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Discord\src\msg_queue.h">
+      <Filter>DiscordRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Discord\src\rpc_connection.h">
+      <Filter>DiscordRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Discord\src\serialization.h">
+      <Filter>DiscordRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Discord\include\discord_register.h">
+      <Filter>DiscordRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Discord\include\discord_rpc.h">
+      <Filter>DiscordRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="WndTicketsDetails.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndMonsterWiki.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndSites.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndNameColor.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonLastOnlineMng.h" />
+    <ClInclude Include="..\_Interface\WndAegonCrafting.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonCrafting.h" />
+    <ClInclude Include="WndPlayerPurge.h" />
+    <ClInclude Include="WndWeaponMerge.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="httplib.h" />
+    <ClInclude Include="WndDropInfo.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndAegonSystemShout.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndSwitchEquip.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonPvPRanking.h" />
+    <ClInclude Include="..\_Interface\WndAegonPvPRanking.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="AegonThemeSwitcherMng.h" />
+    <ClInclude Include="WndInfoDungeonList.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndPetGlow.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndModsManager.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="apngHelper.h" />
+    <ClInclude Include="WndDpsMeter.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatLog.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndGuildTabBuffs.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonEmoticonMng.h" />
+    <ClInclude Include="WndCrystal.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonIngameShop.h" />
+    <ClInclude Include="..\_Interface\WndAegonIngameShop.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndFFA.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WndPlayerRanking.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\PlayerWar.h" />
+    <ClInclude Include="..\_Interface\WndAegonFTool.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonSharedTypes.h" />
+    <ClInclude Include="..\_Common\AegonPvPMinigames.h" />
+    <ClInclude Include="..\_Interface\WndAegonPvPMinigames.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonShopDesign.h" />
+    <ClInclude Include="..\_Common\AegonBossMechanics.h" />
+    <ClInclude Include="..\_Interface\WndAegonMessenger.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Interface\WndAegonTeleporter.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_Common\AegonTeleportMng.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\_Common\mss32.lib" />
+    <Library Include="..\_UnhandledException\neuzd.lib" />
+    <Library Include="..\Lib\libpng.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinMain.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Resource\Blur.fx" />
+    <None Include="..\..\Resource\blur.ps" />
+    <None Include="..\..\Resource\blur.vs" />
+    <None Include="..\..\Resource\Blur2.fx" />
+    <None Include="..\..\resource\skining.vsh" />
+    <None Include="..\..\resource\skining2.vsh" />
+    <None Include="..\..\resource\neuz.ini" />
+    <None Include="res\cur00001.cur" />
+    <None Include="res\cur00002.cur" />
+    <None Include="res\cur00003.cur" />
+    <None Include="res\curAttack.cur" />
+    <None Include="res\curBase.cur" />
+    <None Include="res\curCamera.cur" />
+    <None Include="res\curControl.cur" />
+    <None Include="res\curDelay.cur" />
+    <None Include="res\curGetItem.cur" />
+    <None Include="res\curHelp.cur" />
+    <None Include="res\curNo.cur" />
+    <None Include="res\curNPC.cur" />
+    <None Include="res\curSelect.cur" />
+    <None Include="res\cursor2.cur" />
+    <None Include="res\cursor3.cur" />
+    <None Include="res\edit.cur" />
+    <None Include="res\hori.cur" />
+    <None Include="res\ico00001.ico" />
+    <None Include="res\main_ico.ico" />
+    <None Include="..\..\resource\Masquerade.prj" />
+    <None Include="..\..\resource\mss32.dll" />
+    <None Include="..\..\resource\mssmp3.asi" />
+    <None Include="res\resize_h.cur" />
+    <None Include="..\..\resource\water.vsh" />
+    <None Include="..\..\resource\Music\default.bgm" />
+    <None Include="..\..\resource\Music\morrowind title.mp3" />
+    <None Include="..\..\resource\Music\music1007.mp3" />
+    <None Include="..\..\resource\Music\track13.wav" />
+    <None Include="res\anvil.cur" />
+    <None Include="res\curDoor.cur" />
+    <None Include="res\curGate.cur" />
+    <None Include="res\curLever.cur" />
+    <None Include="res\data1.bin" />
+    <None Include="res\data2.bin" />
+    <None Include="res\data3.bin" />
+    <None Include="res\Omg.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{59bf88b9-ed0c-4389-8c5a-34849afd4c6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DiscordRPC">
+      <UniqueIdentifier>{2fbcef8d-48ca-4c83-a038-16d41e8dc7c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\splashscreen.png" />
+    <Image Include="res\TitaniumNew.ico" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NewWorldDialog</class>
+ <widget class="QDialog" name="NewWorldDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>466</width>
+    <height>254</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Nouvelle map</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="MainFrame.qrc">
+    <normaloff>:/MainFrame/Resources/new.png</normaloff>:/MainFrame/Resources/new.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(29, 29, 30);
+selection-color: rgb(167, 51, 82);
+color: rgb(197, 197, 197);
+menuBar{background-color: rgb(142, 120, 77);}
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Texture :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBox">
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+	selection-background-color: rgb(41, 41, 42, 30);
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 20px;
+ 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+height: 14px;
+
+}
+ QComboBox QAbstractItemView {
+	
+	selection-background-color: rgb(45, 45, 46);
+}
+QComboBox::QAbstractItemView{
+	background-color: #4f4f4f;
+	color: #999999;
+}
+
+QComboBox::item:pressed { 
+background: rgb(61, 61, 61);
+}
+QComboBox::item:selected { 
+background: rgb(61, 61, 61);
+}
+
+
+ QScrollBar:vertical {
+     background: #1d1d1e;
+     width: 15px;
+     margin: 22px 0 22px 0;
+ }
+ QScrollBar::handle:vertical {
+     background: #202325;
+     min-height: 20px;
+ }
+ QScrollBar::add-line:vertical {
+     background: #202325;
+     height: 20px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line:vertical {
+     background: #202325;
+     height: 20px;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+     width: 3px;
+     height: 3px;
+     background: #907a4e;
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+</string>
+         </property>
+         <property name="maxVisibleItems">
+          <number>20</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Image pour la hauteur :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+	selection-background-color: rgb(41, 41, 42, 30);
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Hauteur de base :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="spinBox">
+         <property name="styleSheet">
+          <string notr="true">QSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+         </property>
+         <property name="maximum">
+          <number>999</number>
+         </property>
+         <property name="value">
+          <number>100</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Largeur :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spinBox_2">
+         <property name="styleSheet">
+          <string notr="true">QSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="value">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Longueur :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="spinBox_3">
+         <property name="styleSheet">
+          <string notr="true">QSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="value">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>MPU :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="spinBox_4">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>4</number>
+         </property>
+         <property name="value">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Donjon :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="checkBox">
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+	image: url(:/MainFrame/Resources/Icons_New/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Icons_New/Checkbutton_yes.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="MainFrame.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>NewWorldDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>257</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>NewWorldDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

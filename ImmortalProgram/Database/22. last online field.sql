@@ -1,0 +1,6 @@
+USE [CHARACTER_01_DBF]
+ALTER TABLE CHARACTER_TBL
+ADD 
+m_nLastOnline bigint NOT NULL default 0
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CWidgetAutoSave</class>
+ <widget class="QDialog" name="CWidgetAutoSave">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>285</width>
+    <height>124</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Set auto timer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="MainFrame.qrc">
+    <normaloff>:/MainFrame/Resources/WorldEditor.png</normaloff>:/MainFrame/Resources/WorldEditor.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(29, 29, 30);
+selection-color: rgb(167, 51, 82);
+color: rgb(197, 197, 197);
+menuBar{background-color: rgb(142, 120, 77);}
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QTimeEdit" name="timeAutoSave">
+       <property name="styleSheet">
+        <string notr="true">QTimeEdit::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+  position: relative;
+top: 1px;
+height: 9px;
+}
+
+QTimeEdit::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+  position: relative;
+bottom: 0px;
+height: 9px;
+}
+
+QTimeEdit { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+}</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btnOk">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+       </property>
+       <property name="text">
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="MainFrame.qrc"/>
+ </resources>
+ <connections/>
+</ui>

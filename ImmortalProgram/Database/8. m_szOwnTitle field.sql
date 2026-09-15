@@ -1,0 +1,7 @@
+USE [CHARACTER_01_DBF]
+ALTER TABLE CHARACTER_TBL
+ADD m_szOwnTitle varchar(20);
+
+GO
+
+UPDATE CHARACTER_TBL set m_szOwnTitle = '$';

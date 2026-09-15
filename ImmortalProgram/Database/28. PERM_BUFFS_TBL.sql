@@ -1,0 +1,94 @@
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Table [dbo].[PERM_BUFFS_TBL]    Script Date: 20/01/2019 11:53:12 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[PERM_BUFFS_TBL](
+	[serverindex] [char](2) NOT NULL,
+	[m_idPlayer] [varchar](7) NOT NULL,
+	[m_szBuffs] [varchar](MAX) NOT NULL
+	
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Index [PERM_BUFFS_ID1]    Script Date: 20/01/2019 11:53:20 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [PERM_BUFFS_ID1] ON [dbo].[PERM_BUFFS_TBL]
+(
+	[m_idPlayer] ASC,
+	[serverindex] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 75) ON [PRIMARY]
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Index [PERM_BUFFS_TBL_ID1]    Script Date: 20/01/2019 11:53:32 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [PERM_BUFFS_TBL_ID1] ON [dbo].[PERM_BUFFS_TBL]
+(
+	[m_idPlayer] DESC,
+	[serverindex] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Index [IDX_PERM_BUFFS_TBLL_m_idPlayer]    Script Date: 20/01/2019 11:53:40 AM ******/
+CREATE UNIQUE CLUSTERED INDEX [IDX_PERM_BUFFS_TBLL_m_idPlayer] ON [dbo].[PERM_BUFFS_TBL]
+(
+	[m_idPlayer] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SAVE_PERM_BUFFS]    Script Date: 20/01/2019 11:53:59 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SAVE_PERM_BUFFS]
+	@im_idPlayer varchar(7),
+	@iserverindex char(2),
+	@im_szBuffs varchar(MAX)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	BEGIN TRANSACTION;
+
+	IF EXISTS (SELECT 1 FROM PERM_BUFFS_TBL WITH (UPDLOCK,SERIALIZABLE) WHERE m_idPlayer = @im_idPlayer AND serverindex = @iserverindex)
+		UPDATE PERM_BUFFS_TBL SET	m_szBuffs = @im_szBuffs
+							 WHERE
+								  m_idPlayer = @im_idPlayer
+							 AND  serverindex = @iserverindex
+	ELSE
+		INSERT PERM_BUFFS_TBL (m_idPlayer,     serverindex,    m_szBuffs)
+					VALUES	  (@im_idPlayer, @iserverindex, @im_szBuffs)
+
+	COMMIT TRANSACTION;
+END
+
+GO

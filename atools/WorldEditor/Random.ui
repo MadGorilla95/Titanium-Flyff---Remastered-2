@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RandomDialog</class>
+ <widget class="QDialog" name="RandomDialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>336</width>
+    <height>95</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Taille et rotation aléatoires</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="MainFrame.qrc">
+    <normaloff>:/MainFrame/Resources/random.png</normaloff>:/MainFrame/Resources/random.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(29, 29, 30);
+selection-color: rgb(167, 51, 82);
+color: rgb(197, 197, 197);
+menuBar{background-color: rgb(142, 120, 77);}
+</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="3">
+      <widget class="QDoubleSpinBox" name="maxRot">
+       <property name="styleSheet">
+        <string notr="true">QDoubleSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QDoubleSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QDoubleSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="maximum">
+        <double>360.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>360.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDoubleSpinBox" name="minRot">
+       <property name="styleSheet">
+        <string notr="true">QDoubleSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QDoubleSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QDoubleSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="minimum">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>360.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="minScale">
+       <property name="styleSheet">
+        <string notr="true">QDoubleSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QDoubleSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QDoubleSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="minimum">
+        <double>0.001000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>1000.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>~</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="scale">
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+	image: url(:/MainFrame/Resources/Icons_New/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Icons_New/Checkbutton_yes.png);
+}</string>
+       </property>
+       <property name="text">
+        <string>Taille :</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>~</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QCheckBox" name="rotation">
+       <property name="styleSheet">
+        <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+	image: url(:/MainFrame/Resources/Icons_New/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Icons_New/Checkbutton_yes.png);
+}</string>
+       </property>
+       <property name="text">
+        <string>Rotation :</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QDoubleSpinBox" name="maxScale">
+       <property name="styleSheet">
+        <string notr="true">QDoubleSpinBox::down-button {
+	image: url(:/MainFrame/Resources/Icons_New/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+height: 9px;
+}
+
+QDoubleSpinBox::up-button {
+    image: url(:/MainFrame/Resources//Icons_New/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+right: 1.5px;
+bottom: 0px;
+height: 9px;
+}
+
+QDoubleSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+	selection-background-color: rgb(40, 42, 44);
+}</string>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="minimum">
+        <double>0.001000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>1000.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>1.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="MainFrame.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>RandomDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>RandomDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

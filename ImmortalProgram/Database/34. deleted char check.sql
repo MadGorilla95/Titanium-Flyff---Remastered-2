@@ -1,0 +1,6 @@
+USE [CHARACTER_01_DBF]
+ALTER TABLE CHARACTER_TBL
+ADD 
+m_nDeleted int NOT NULL default 0
+
+

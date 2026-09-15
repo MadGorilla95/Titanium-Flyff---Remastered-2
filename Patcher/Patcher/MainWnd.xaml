@@ -1,0 +1,200 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" mc:Ignorable="d" x:Class="PatchClient.MainWnd"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Titanium Patcher" Height="auto" Width="auto" Background="{x:Null}" OpacityMask="White" AllowsTransparency="True" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" >
+    <Window.Resources>
+        <Style x:Key="FTY_SKRADJHUWN_NCV_1">
+            <Setter Property="TextElement.FontFamily" Value="Resources/#FTY_SKRADJHUWN_NCV_1"  />
+        </Style>
+        <Style x:Key="CONSTAN">
+            <Setter Property="TextElement.FontFamily" Value="Resources/#CONSTAN" />
+        </Style>
+        <Style x:Key="MYRIADPRO-REGULAR">
+            <Setter Property="TextElement.FontFamily"  Value="Resources/#MYRIADPRO-REGULAR" />
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Opacity" Value="1.0" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Border" BorderThickness="0"
+                    BorderBrush="Transparent">
+                            <ContentPresenter
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" 
+                          Property="Background" Value="Transparent" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" 
+                          Property="BorderThickness" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Image x:Key="playHover" Source="Images/Button_Play01.png" />
+        <Image x:Key="playNormal" Source="Images/Button_Play02.png"/>
+        <Image x:Key="settHover" Source="Images/Button_S_1.png" />
+        <Image x:Key="settNormal" Source="Images/Button_S.png"/>
+        <Image x:Key="closeHover" Source="Images/Button_X_1.png" />
+        <Image x:Key="closeNormal" Source="Images/Button_X.png"/>
+        <Image x:Key="minimizeHover" Source="Images/Button_M_1.png" />
+        <Image x:Key="minimizeNormal" Source="Images/Button_M.png"/>
+        <Image x:Key="homepageHover" Source="Images/socialmedia03.png" />
+        <Image x:Key="homepageNormal" Source="Images/socialmedia03.png"/>
+        <Image x:Key="discordHover" Source="Images/socialmedia02.png" />
+        <Image x:Key="discordNormal" Source="Images/socialmedia02.png"/>
+        <Image x:Key="facebookHover" Source="Images/socialmedia01.png" />
+        <Image x:Key="facebookNormal" Source="Images/socialmedia01.png"/>
+
+        <Image x:Key="news0" Source="https://titanium-mmo.com/patcher/news_0.png"/>
+        <Image x:Key="news1" Source="https://titanium-mmo.com/patcher/news_1.png"/>
+        <Image x:Key="news2" Source="https://titanium-mmo.com/patcher/news_2.png"/>
+        <Image x:Key="news3" Source="https://titanium-mmo.com/patcher/news_3.png"/>
+        <Image x:Key="news4" Source="https://titanium-mmo.com/patcher/news_4.png"/>
+
+        <Image x:Key="ButtonNewsClicked" Source="Images/patcher_box0001.png"/>
+
+        <Image x:Key="ButtonNewsNormal0" Source="Images/patcher_box0002.png"/>
+        <Image x:Key="ButtonNewsNormal1" Source="Images/patcher_box0002.png"/>
+        <Image x:Key="ButtonNewsNormal2" Source="Images/patcher_box0002.png"/>
+        <Image x:Key="ButtonNewsNormal3" Source="Images/patcher_box0002.png"/>
+        <Image x:Key="ButtonNewsNormal4" Source="Images/patcher_box0002.png"/>
+
+
+    </Window.Resources>
+
+    <Grid x:Name="CompleteGrid" Width="1105" Height="530">
+        <Grid.Resources>
+            <TransformGroup x:Key="ImageTransformResource">
+                <ScaleTransform />
+                <TranslateTransform />
+            </TransformGroup>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <!--customers customize here -->
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--customers customize here -->
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="61*" />
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+
+        <Image Height="530" Width="1011" x:Name="Image" Source="Images/Main_window.png" Grid.Column="0" Stretch="Fill" Grid.ColumnSpan="10" Grid.RowSpan="4" Opacity="1" IsEnabled="False" Margin="0,0,100,-13">
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Minimize" x:Name="mnuInvokeMinimize"/>
+                    <MenuItem Header="Maximize" x:Name="mnuInvokeMaximize"/>
+                    <MenuItem Header="Restore Down"  x:Name="mnuInvokeRestore"/>
+                    <MenuItem Header="Close"  x:Name="mnuInvokeClose"/>
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
+        <TextBlock Text="0%" Name="CurrentFileText" FontSize="14" Foreground="White"  Style="{DynamicResource MYRIADPRO-REGULAR}" HorizontalAlignment="Left" Height="20" Margin="80,82,0,0" Grid.Row="3" Padding="0" VerticalAlignment="Top" Width="57" TextAlignment="Center" Grid.Column="3" Grid.ColumnSpan="2" />
+        <ProgressBar x:Name="Total" Minimum="0" Maximum="100" Grid.ColumnSpan="9" Background="Black" HorizontalAlignment="Left" Height="8" Margin="12,103,0,0" Padding="0" Grid.Row="3" VerticalAlignment="Top" Width="871"  BorderThickness="0" Grid.Column="1">
+            <ProgressBar.Foreground >
+                <ImageBrush ImageSource="Images/Loadingbar.png"/>
+            </ProgressBar.Foreground>
+        </ProgressBar>
+
+        <Image x:Name="NewsImage" Source="https://titanium-mmo.com/patcher/news_0.png" Grid.Column="4" Grid.RowSpan="2" Grid.ColumnSpan="5" Margin="82.467,4,21.733,28.333" Stretch="Fill" Grid.Row="1" />
+
+
+        <Image x:Name="Logo" Source="Images/Logo.png" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="3"  Margin="45,-40,0,0" Stretch="Fill" Grid.Row="0" Height="62" Width="138">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="Images/Logo.png"/>
+            </Image.OpacityMask>
+        </Image>
+
+        <Button x:Name="ButtonClose" Content="" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="19" Height="19" Grid.Column="8" BorderBrush="Transparent" Click="ButtonClose_Click" MouseEnter="ButtonClose_MouseEnter" MouseLeave="ButtonClose_MouseLeave" Cursor="Hand">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Button_X.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonMinimize" Content="" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="19" Height="19" Grid.Column="8" BorderBrush="Transparent" Click="ButtonMinimize_Click" MouseEnter="ButtonMinimize_MouseEnter" MouseLeave="ButtonMinimize_MouseLeave" Cursor="Hand">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Button_M.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonSettings" Content=""  HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" Width="19" Height="19" Grid.Column="8"  BorderBrush="Transparent" MouseEnter="ButtonSettings_MouseEnter" MouseLeave="ButtonSettings_MouseLeave" Cursor="Hand" Click="ButtonSettings_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Button_S.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonPlay" HorizontalAlignment="Left" Margin="38,86,0,0" Grid.Row="3" VerticalAlignment="Top" Width="145" Height="43" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="2" BorderBrush="Transparent" Cursor="Hand" Click="ButtonPlay_Click" MouseEnter="ButtonPlay_MouseEnter" MouseLeave="ButtonPlay_MouseLeave">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Button_Play02.png"/>
+            </Button.Background>
+        </Button>
+        <TextBlock x:Name="downloadSpeed" Grid.ColumnSpan="1" Grid.RowSpan="2" Text="0.00 MB/s" Foreground="White" TextAlignment="Left" Padding="0,1,0,0" Style="{DynamicResource MYRIADPRO-REGULAR}"  HorizontalAlignment="Left" Margin="12,114,0,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Height="15" Width="74"/>
+        <TextBlock x:Name="downloadType" FontSize="14"  Grid.ColumnSpan="2" Grid.RowSpan="2" Text="Grabbing Patch List" Foreground="White" TextAlignment="Left" Padding="0,1,2,0"  Style="{DynamicResource CONSTAN}"  HorizontalAlignment="Left" Margin="55,82,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" Width="130" Grid.Column="2"/>
+        <TextBlock x:Name="downloadProgress"  Grid.ColumnSpan="2" Grid.RowSpan="2" Text="0,00/0,00MB" Foreground="White" TextAlignment="Right" Padding="0,1,0,0"  Style="{DynamicResource CONSTAN}"  HorizontalAlignment="Left" Margin="10,114,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" Width="100" Grid.Column="8"/>
+
+        <Button x:Name="ButtonHomepage" Content="" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="18" Height="19" Grid.Column="1" BorderBrush="Transparent" Click="ButtonHomepage_Click" MouseEnter="ButtonHomepage_MouseEnter" MouseLeave="ButtonHomepage_MouseLeave" Cursor="Hand">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/socialmedia03.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonDiscord" Content="" HorizontalAlignment="Left" Margin="0,25,0,0" Grid.Row="3" VerticalAlignment="Top" Width="20" Height="20" BorderBrush="Transparent" Click="ButtonDiscord_Click" MouseEnter="ButtonDiscord_MouseEnter" MouseLeave="ButtonDiscord_MouseLeave" Cursor="Hand" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/socialmedia02.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonFacebook" Content="" HorizontalAlignment="Left" Margin="0,51,0,0" Grid.Row="3" VerticalAlignment="Top" Width="20" Height="20" BorderBrush="Transparent" Click="ButtonFacebook_Click" MouseEnter="ButtonFacebook_MouseEnter" MouseLeave="ButtonFacebook_MouseLeave" Cursor="Hand" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/socialmedia01.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonNews0" Width="11" Height="12" Grid.Column="4" Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="30,15,0,0" BorderBrush="Transparent" Click="ButtonNews_Click" MouseEnter="ButtonNews_MouseEnter" MouseLeave="ButtonNews_MouseLeave" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="center">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/patcher_box0002.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonNews1" Width="11" Height="12" Grid.Column="4" Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="60,15,0,0" BorderBrush="Transparent" Click="ButtonNews_Click" MouseEnter="ButtonNews_MouseEnter" MouseLeave="ButtonNews_MouseLeave" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/patcher_box0002.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonNews2" Width="11" Height="12" Grid.Column="4" Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="90,15,0,0" BorderBrush="Transparent" Click="ButtonNews_Click" MouseEnter="ButtonNews_MouseEnter" MouseLeave="ButtonNews_MouseLeave" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/patcher_box0002.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonNews3" Width="11" Height="12" Grid.Column="4" Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="120,15,0,0" BorderBrush="Transparent" Click="ButtonNews_Click" MouseEnter="ButtonNews_MouseEnter" MouseLeave="ButtonNews_MouseLeave" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/patcher_box0002.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ButtonNews4" Width="11" Height="12" Grid.Column="4" Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="150,15,0,0" BorderBrush="Transparent" Click="ButtonNews_Click" MouseEnter="ButtonNews_MouseEnter" MouseLeave="ButtonNews_MouseLeave" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/patcher_box0002.png"/>
+            </Button.Background>
+        </Button>
+        <Image Height="530" Width="1011" x:Name="ImageDark" Source="Images/Main_window_dark.png" Grid.Column="0" Stretch="Fill" Grid.ColumnSpan="10" Grid.RowSpan="4" Opacity="0" IsEnabled="False" Margin="0,0,100,-13" >
+
+        </Image>
+    </Grid>
+</Window>

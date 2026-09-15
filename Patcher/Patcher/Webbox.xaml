@@ -1,0 +1,6 @@
+﻿<Window x:Class="PatchClient.Webbox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize" Height="512.5" Activated="Window_Activated">
+    <WebBrowser  Name="_wb" MouseDown="_wb_MouseDown"/>
+</Window>

@@ -1,0 +1,4 @@
+USE [CHARACTER_01_DBF]
+ALTER TABLE GUILD_TBL
+ADD 
+m_bGuildFinder int NOT NULL default 1;

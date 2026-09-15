@@ -1,0 +1,4 @@
+USE [CHARACTER_01_DBF]
+ALTER TABLE CHARACTER_TBL
+ADD 
+m_nRebirthLevel int NOT NULL default 0

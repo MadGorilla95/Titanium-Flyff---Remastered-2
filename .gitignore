@@ -1,0 +1,51 @@
+# Visual Studio / build output
+.vs/
+Debug/
+Release/
+x64/
+x86/
+ipch/
+bin/
+obj/
+build/
+Build/
+
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.pch
+*.tlog
+*.lastbuildstate
+*.suo
+*.user
+*.log
+*.tmp
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Runtime / generated
+logs/
+Logs/
+crash/
+Crash/
+temp/
+Temp/
+
+# Flyff client/resources - niet in source repo
+Client/
+ResClient/
+Resource/
+World/
+
+# Large game assets
+*.dds
+*.o3d
+*.ani
+*.chr
+*.wav
+*.mp3
+*.ogg
+*.res

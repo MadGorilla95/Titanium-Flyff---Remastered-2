@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogEditEffects</class>
+ <widget class="QDialog" name="DialogEditEffects">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>312</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Édition des effets</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="MainFrame.qrc">
+    <normaloff>:/MainFrame/Resources/settings.png</normaloff>:/MainFrame/Resources/settings.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(27, 29, 31);
+selection-color: rgb(41, 107, 137);
+color: rgb(171, 144, 92);
+menuBar{background-color: rgb(142, 120, 77);}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QTreeWidget" name="tree">
+       <property name="styleSheet">
+        <string notr="true">
+ QScrollBar:vertical {
+     background: #1d1d1e;
+     width: 15px;
+     margin: 22px 0 22px 0;
+ }
+ QScrollBar::handle:vertical {
+     background: #202325;
+     min-height: 20px;
+ }
+ QScrollBar::add-line:vertical {
+     background: #202325;
+     height: 20px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line:vertical {
+     background: #202325;
+     height: 20px;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+     width: 3px;
+     height: 3px;
+     background: #907a4e;
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+
+QTreeWidget {
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin-top: 0.5em;
+	border-color: rgb(131, 111, 71);
+}
+
+QTreeWidget::branch:open:has-children:!has-siblings,
+QTreeWidget::branch:open:has-children:has-siblings  {
+	image: url(:/MainFrame/Resources/Tab_Arrow.png);
+
+}
+QTreeWidget::branch:has-children:!has-siblings:closed,
+QTreeWidget::branch:closed:has-children:has-siblings {
+	image: url(:/MainFrame/Resources/Tab_Arrow2.png);
+
+}</string>
+       </property>
+       <property name="headerHidden">
+        <bool>true</bool>
+       </property>
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="checkReflect">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/MainFrame/Resources/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Checkbutton_yes.png);
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Reflet</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QCheckBox" name="checkOpacity">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/MainFrame/Resources/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Checkbutton_yes.png);
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Opacité</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinOpacity">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QSpinBox::down-button {
+	image: url(:/MainFrame/Resources/external-down-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+  position: relative;
+top: 1px;
+height: 11px;
+}
+
+QSpinBox::up-button {
+    image: url(:/MainFrame/Resources/external-up-arrow-arrow-flatart-icons-lineal-color-flatarticons-10.png);
+  position: relative;
+bottom: 1px;
+height: 11px;
+}
+
+QSpinBox { 
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+	padding: 1px 20px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+}
+</string>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="check2Sides">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/MainFrame/Resources/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Checkbutton_yes.png);
+}
+</string>
+         </property>
+         <property name="text">
+          <string>2 côtés visibles</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkSelfIlluminate">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/MainFrame/Resources/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Checkbutton_yes.png);
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Pas d'éclairage</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkHighlight">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 31px;
+    height: 19px;
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/MainFrame/Resources/Checkbutton_no.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/MainFrame/Resources/Checkbutton_yes.png);
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Lampe</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="changeTexture">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Changer la texture</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="CWOrCCW">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+         </property>
+         <property name="text">
+          <string>CW &lt;-&gt; CCW</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="contextMenuPolicy">
+      <enum>Qt::DefaultContextMenu</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: 1px solid #333333;
+border-radius: 3px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(45, 45, 46, 255), stop:1 rgba(37, 40, 43, 255));
+padding: 3px 20px;
+
+}
+
+QPushButton:hover {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(37, 37, 38, 255), stop:1 rgba(27, 29, 31, 255));
+}
+</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="MainFrame.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DialogEditEffects</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DialogEditEffects</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

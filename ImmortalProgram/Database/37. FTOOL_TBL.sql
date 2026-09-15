@@ -1,0 +1,94 @@
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Table [dbo].[FTOOL_TBL]    Script Date: 20/01/2019 11:53:12 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[FTOOL_TBL](
+	[serverindex] [char](2) NOT NULL,
+	[m_idPlayer] [varchar](7) NOT NULL,
+	[m_szFTool] [varchar](MAX) NOT NULL
+	
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Index [FTOOL_ID1]    Script Date: 20/01/2019 11:53:20 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [FTOOL_ID1] ON [dbo].[FTOOL_TBL]
+(
+	[m_idPlayer] ASC,
+	[serverindex] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 75) ON [PRIMARY]
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Index [FTOOL_TBL_ID1]    Script Date: 20/01/2019 11:53:32 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [FTOOL_TBL_ID1] ON [dbo].[FTOOL_TBL]
+(
+	[m_idPlayer] DESC,
+	[serverindex] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  Index [IDX_FTOOL_TBLL_m_idPlayer]    Script Date: 20/01/2019 11:53:40 AM ******/
+CREATE UNIQUE CLUSTERED INDEX [IDX_FTOOL_TBLL_m_idPlayer] ON [dbo].[FTOOL_TBL]
+(
+	[m_idPlayer] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+
+USE [CHARACTER_01_DBF]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SAVE_FTOOL]    Script Date: 20/01/2019 11:53:59 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SAVE_FTOOL]
+	@im_idPlayer varchar(7),
+	@iserverindex char(2),
+	@im_szFTool varchar(MAX)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	BEGIN TRANSACTION;
+
+	IF EXISTS (SELECT 1 FROM FTOOL_TBL WITH (UPDLOCK,SERIALIZABLE) WHERE m_idPlayer = @im_idPlayer AND serverindex = @iserverindex)
+		UPDATE FTOOL_TBL SET	m_szFTool = @im_szFTool
+							 WHERE
+								  m_idPlayer = @im_idPlayer
+							 AND  serverindex = @iserverindex
+	ELSE
+		INSERT FTOOL_TBL (m_idPlayer,     serverindex,    m_szFTool)
+					VALUES	  (@im_idPlayer, @iserverindex, @im_szFTool)
+
+	COMMIT TRANSACTION;
+END
+
+GO

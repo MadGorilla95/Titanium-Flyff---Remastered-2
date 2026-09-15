@@ -1,0 +1,81 @@
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.CefDirtyRect: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.CefFileDialogMode: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.DependencyChecker: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.IntPtrExtensions: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.JavascriptCallbackProxy: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.JavascriptCallbackEndpointBehavior: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.JavascriptCallbackSurrogate: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.ReflectionUtils: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.DragOperationsMask: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.IDragData: method System.IO.Stream CefSharp.IDragData.GetFileContents() unstubbable: method is abstract and could not be stubbed, type System.IO.Stream is not available in the target framework version.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.CefTerminationStatus: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.CefEventFlags: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.TaskExtensions: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.WCFExtensions: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.KeyType: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.ResponseAction: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.ScreenInfo: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.TransitionType: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.CefFocusSource: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.CefErrorCode: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.IWebBrowser: method System.Void CefSharp.IWebBrowser.LoadHtml(System.String html, System.String url, System.Text.Encoding encoding) unstubbable: method is abstract and could not be stubbed, type System.Text.Encoding is not available in the target framework version.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.IWebBrowserInternal: method System.Void CefSharp.IWebBrowser.LoadHtml(System.String html, System.String url, System.Text.Encoding encoding) unstubbable: method is abstract and could not be stubbed, type System.Text.Encoding is not available in the target framework version.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.IRenderWebBrowser: method System.Void CefSharp.IWebBrowser.LoadHtml(System.String html, System.String url, System.Text.Encoding encoding) unstubbable: method is abstract and could not be stubbed, type System.Text.Encoding is not available in the target framework version.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.OnRequestCompletedHandler: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.ISchemeHandlerResponse: method System.IO.Stream CefSharp.ISchemeHandlerResponse.get_ResponseStream() unstubbable: method is abstract and could not be stubbed. Reason: type System.IO.Stream is not available in the target framework version.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.Internals.Kernel32: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.IWinFormsWebBrowser: method System.Void CefSharp.IWebBrowser.LoadHtml(System.String html, System.String url, System.Text.Encoding encoding) unstubbable: method is abstract and could not be stubbed, type System.Text.Encoding is not available in the target framework version.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.LogSeverity: type is a value type.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate stub for CefSharp.AssemblyInfo: type is sealed.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.CefFileDialogMode: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IResourceHandlerFactory: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IJavascriptCallback: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptCallbackProxy: type is not visible to exported or assembly(CefSharp.39.0.0.0.Fakes).
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptCallbackEndpointBehavior: type is not visible to exported or assembly(CefSharp.39.0.0.0.Fakes).
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptCallbackSurrogate: type is not visible to exported or assembly(CefSharp.39.0.0.0.Fakes).
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.ReflectionUtils: type is not visible to exported or assembly(CefSharp.39.0.0.0.Fakes).
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.DragOperationsMask: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IBitmapFactory: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IDragData: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IFocusHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IDragHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IGeolocationHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.CefTerminationStatus: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IDialogHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.CefEventFlags: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.TaskExtensions+<>c__DisplayClass2`1: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IStringVisitor: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IContextMenuParams: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.IBrowserProcess: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.BrowserProcessServiceHost+<>c__DisplayClass5: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.BrowserProcessServiceHost+<>c__DisplayClass8: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.BrowserProcessServiceHost+<>c__DisplayClassb: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.WCFExtensions: type is not visible to exported or assembly(CefSharp.39.0.0.0.Fakes).
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.KeyType: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ResponseAction: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.TransitionType: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ICompletionHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.CefFocusSource: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptObjectRepository+<>c__DisplayClass11: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptObjectRepository+<>c__DisplayClass3: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptObjectRepository+<>c__DisplayClass6: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.JavascriptObjectRepository+<>c__DisplayClass9: type is not supported because of internal limitations.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.CefErrorCode: type is an enum.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ICookieVisitor: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IDownloadHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IJsDialogHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IKeyboardHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ILifeSpanHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IMenuHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IWebBrowser: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.IWebBrowserInternal: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.IRenderWebBrowser: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IRequest: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IRequestHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.OnRequestCompletedHandler: type is a delegate.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ISchemeHandler: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ISchemeHandlerFactory: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.ISchemeHandlerResponse: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.Internals.IRenderProcess: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.IWinFormsWebBrowser: type is an interface.
+A:\HDD Backup\FlyFF\Source - vs2013\PatchClient v2.0\Patcher\Fakes\CefSharp.fakes : warning : Cannot generate shim for CefSharp.LogSeverity: type is an enum.

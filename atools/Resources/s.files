@@ -1,0 +1,16 @@
+ContinentDef.h
+ResData.h
+WndStyle.h
+define.h
+defineAttribute.h
+defineItem.h
+defineItemkind.h
+defineJob.h
+defineNeuz.h
+defineObj.h
+defineSkill.h
+defineSound.h
+defineText.h
+defineWorld.h
+definequest.h
+lang.h

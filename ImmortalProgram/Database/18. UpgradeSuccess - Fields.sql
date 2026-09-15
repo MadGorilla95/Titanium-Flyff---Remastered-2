@@ -1,0 +1,11 @@
+USE [LOGGING_01_DBF]
+ALTER TABLE LOG_ITEM_TBL
+ADD 
+nUpgradeTries int NOT NULL default 1;
+
+GO
+
+USE [CHARACTER_01_DBF]
+ALTER TABLE MAIL_TBL
+ADD 
+nUpgradeTries int NOT NULL default 1;
