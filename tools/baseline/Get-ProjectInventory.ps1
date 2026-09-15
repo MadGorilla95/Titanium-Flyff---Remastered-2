@@ -37,11 +37,14 @@ $projects=New-Object Collections.ArrayList
 foreach($entry in @($files | Where-Object {$_.File.Extension -in '.vcxproj','.csproj'})) {
     $errorText=$null; $xml=$null
     try {[xml]$xml=Get-Content $entry.File.FullName -Raw} catch {$errorText=$_.Exception.Message}
-    $types=if($xml){@(Values $xml 'ConfigurationType')}else{@()}
-    $targets=if($xml){@(Values $xml 'TargetName')}else{@()}
-    $extensions=if($xml){@(Values $xml 'TargetExt')}else{@()}
-    $toolsets=if($xml){@(Values $xml 'PlatformToolset')}else{@()}
-    $sdks=if($xml){@(Values $xml 'WindowsTargetPlatformVersion')}else{@()}
+    $types=@(); $targets=@(); $extensions=@(); $toolsets=@(); $sdks=@()
+    if($xml){
+        $types=@(Values $xml 'ConfigurationType')
+        $targets=@(Values $xml 'TargetName')
+        $extensions=@(Values $xml 'TargetExt')
+        $toolsets=@(Values $xml 'PlatformToolset')
+        $sdks=@(Values $xml 'WindowsTargetPlatformVersion')
+    }
     $name=[IO.Path]::GetFileNameWithoutExtension($entry.File.Name)
     if($targets.Count -eq 0){$targets=@($name)}
     if($extensions.Count -eq 0 -and ($types -contains 'Application')){$extensions=@('.exe')}
