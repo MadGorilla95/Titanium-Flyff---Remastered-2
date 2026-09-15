@@ -76,3 +76,7 @@ ipch/
 *.user
 *.log
 *.tmp
+
+# Phase 0 baseline outputs and machine-local configuration
+/artifacts/baseline/
+/tools/baseline/*.local.json

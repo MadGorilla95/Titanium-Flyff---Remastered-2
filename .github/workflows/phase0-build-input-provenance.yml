@@ -1,0 +1,103 @@
+name: Phase 0 build-input provenance
+
+on:
+  push:
+    paths:
+      - '.github/workflows/phase0-build-input-provenance.yml'
+      - 'tools/baseline/Resolve-BuildInputOrigins.ps1'
+      - 'tools/baseline/tests/Invoke-BuildInputOriginSelfTest.ps1'
+      - 'tools/baseline/baseline.config.example.json'
+      - 'docs/baseline/BUILD-INPUT-PROVENANCE-2026-09-15.md'
+  pull_request:
+    paths:
+      - '.github/workflows/phase0-build-input-provenance.yml'
+      - 'tools/baseline/Resolve-BuildInputOrigins.ps1'
+      - 'tools/baseline/tests/Invoke-BuildInputOriginSelfTest.ps1'
+      - 'tools/baseline/baseline.config.example.json'
+      - 'docs/baseline/BUILD-INPUT-PROVENANCE-2026-09-15.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-build-input-provenance:
+    runs-on: windows-2022
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Parse provenance PowerShell files
+        shell: powershell
+        run: |
+          $failed = $false
+          @(
+            '.\tools\baseline\Resolve-BuildInputOrigins.ps1',
+            '.\tools\baseline\tests\Invoke-BuildInputOriginSelfTest.ps1'
+          ) | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              (Resolve-Path $_).Path,
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+
+            if ($errors.Count -gt 0) {
+              $failed = $true
+              Write-Host "Parser errors in $_" -ForegroundColor Red
+              $errors | ForEach-Object { Write-Host $_.Message -ForegroundColor Red }
+            }
+          }
+          if ($failed) { throw 'Build-input provenance scripts contain parser errors.' }
+
+      - name: Validate provenance configuration
+        shell: powershell
+        run: |
+          $config = Get-Content .\tools\baseline\baseline.config.example.json -Raw |
+            ConvertFrom-Json
+
+          if ($config.schemaVersion -lt 4) { throw 'Expected baseline config schema version 4 or newer.' }
+          if (@($config.build.requiredInputs).Count -ne 4) { throw 'Expected four known missing build inputs.' }
+          if ($null -eq $config.build.provenanceAdditionalSearchRoots) { throw 'provenanceAdditionalSearchRoots is missing.' }
+          if ($config.build.provenanceMaxCandidatesPerInput -lt 1) { throw 'Invalid provenance candidate limit.' }
+          if ([bool]$config.build.provenanceIncludeAbsoluteExternalPaths) { throw 'External absolute paths must be redacted by default.' }
+          if (-not [bool]$config.build.provenanceScanLegacyPreprocessedReferences) { throw 'Legacy preprocessed path evidence should be enabled by default.' }
+
+      - name: Run build-input provenance self-test
+        shell: powershell
+        run: .\tools\baseline\tests\Invoke-BuildInputOriginSelfTest.ps1
+
+      - name: Audit repository build-input provenance
+        shell: powershell
+        run: |
+          $result = .\tools\baseline\Resolve-BuildInputOrigins.ps1 `
+            -RepositoryRoot . `
+            -ConfigPath .\tools\baseline\baseline.config.example.json `
+            -OutputDirectory .\artifacts\baseline\build-input-origins
+
+          $summary = Get-Content $result.SummaryJson -Raw | ConvertFrom-Json
+          if ($summary.totals.requiredInputs -ne 4) { throw 'Expected four required inputs in provenance output.' }
+          if ([bool]$summary.security.contentCopied) { throw 'The provenance audit must never copy candidate content.' }
+          if ([bool]$summary.security.absoluteExternalPathsIncluded) { throw 'External absolute paths should be redacted in CI evidence.' }
+          if ($summary.totals.expectedPaths -lt 16) { throw 'Expected case/path variants were not audited.' }
+
+          Add-Content $env:GITHUB_STEP_SUMMARY '## Build-input provenance'
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Required inputs: $($summary.totals.requiredInputs)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Candidates found in clean clone: $($summary.totals.candidateFiles)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Unresolved inputs: $($summary.totals.unresolvedInputs)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Direct references: $($summary.totals.directReferences)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Legacy preprocessed references: $($summary.totals.legacyPreprocessedReferences)"
+          Add-Content $env:GITHUB_STEP_SUMMARY ''
+          Add-Content $env:GITHUB_STEP_SUMMARY '> Metadata and hashes only. No candidate header content is copied or uploaded.'
+
+      - name: Upload provenance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase0-build-input-provenance-${{ github.sha }}
+          path: artifacts/baseline/build-input-origins/**
+          if-no-files-found: error
+          retention-days: 7
