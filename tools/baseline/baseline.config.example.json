@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "repositoryRoot": "../..",
   "sourceRoot": "Source/Source",
   "artifactRoot": "artifacts/baseline",
@@ -8,11 +8,49 @@
     "solution": "Source/Source/all/all.sln",
     "configuration": "Release",
     "platform": "x64",
-    "additionalArguments": []
+    "additionalArguments": [],
+    "requiredInputs": [
+      {
+        "name": "Lang.h",
+        "candidatePaths": [
+          "Source/resource/Lang.h",
+          "Source/Source/Resource/Lang.h"
+        ]
+      },
+      {
+        "name": "Define.h",
+        "candidatePaths": [
+          "Source/resource/Define.h",
+          "Source/Source/Resource/Define.h"
+        ]
+      },
+      {
+        "name": "defineItem.h",
+        "candidatePaths": [
+          "Source/resource/defineItem.h",
+          "Source/Source/Resource/defineItem.h"
+        ]
+      },
+      {
+        "name": "defineitemkind.h",
+        "candidatePaths": [
+          "Source/resource/defineitemkind.h",
+          "Source/Source/Resource/defineitemkind.h"
+        ]
+      }
+    ]
   },
   "runtime": {
     "enabled": false,
-    "processNames": [],
+    "processNames": [
+      "1. Account-x64",
+      "2. Certifier-x64",
+      "3. Database-x64",
+      "4. Core-x64",
+      "5. Login-x64",
+      "6. Cache-x64",
+      "7. World-x64"
+    ],
     "captureTopology": true,
     "includeCommandLine": false,
     "skipFileHash": false,
@@ -21,7 +59,15 @@
   },
   "network": {
     "enabled": false,
-    "processNames": [],
+    "processNames": [
+      "1. Account-x64",
+      "2. Certifier-x64",
+      "3. Database-x64",
+      "4. Core-x64",
+      "5. Login-x64",
+      "6. Cache-x64",
+      "7. World-x64"
+    ],
     "sampleIntervalSeconds": 1,
     "durationSeconds": 300
   },
@@ -59,6 +105,18 @@
         "endPattern": "",
         "correlationRegex": ""
       }
+    ]
+  },
+  "titanium": {
+    "preferredLauncher": "ImmortalProgram/- Server Starter64.bat",
+    "expectedRuntimeExecutables": [
+      "1. Account-x64.exe",
+      "2. Certifier-x64.exe",
+      "3. Database-x64.exe",
+      "4. Core-x64.exe",
+      "5. Login-x64.exe",
+      "6. Cache-x64.exe",
+      "7. World-x64.exe"
     ]
   },
   "staticScan": {

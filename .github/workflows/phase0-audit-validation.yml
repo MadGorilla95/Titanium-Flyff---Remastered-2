@@ -1,4 +1,4 @@
-name: Phase 0 audit validation
+name: Phase 0 audit tooling and build evidence
 
 on:
   push:
@@ -6,19 +6,33 @@ on:
       - '.github/workflows/phase0-audit-validation.yml'
       - 'tools/baseline/**'
       - 'docs/baseline/**'
+      - 'Source/Source/**/*.sln'
+      - 'Source/Source/**/*.vcxproj'
+      - 'Source/Source/**/*.props'
+      - 'Source/Source/**/*.cpp'
+      - 'Source/Source/**/*.h'
+      - '-_Move_Compiles.bat'
   pull_request:
     paths:
       - '.github/workflows/phase0-audit-validation.yml'
       - 'tools/baseline/**'
       - 'docs/baseline/**'
+      - 'Source/Source/**/*.sln'
+      - 'Source/Source/**/*.vcxproj'
+      - 'Source/Source/**/*.props'
+      - 'Source/Source/**/*.cpp'
+      - 'Source/Source/**/*.h'
+      - '-_Move_Compiles.bat'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  validate-audit-tools:
+  validate-audit-tooling:
+    name: Validate Phase 0 audit tooling
     runs-on: windows-2022
-    timeout-minutes: 60
+    timeout-minutes: 45
 
     steps:
       - name: Check out repository
@@ -50,8 +64,12 @@ jobs:
         run: |
           $config = Get-Content .\tools\baseline\baseline.config.example.json -Raw |
             ConvertFrom-Json
-          if ($config.schemaVersion -lt 2) { throw 'Expected baseline config schema version 2 or newer.' }
+
+          if ($config.schemaVersion -lt 3) { throw 'Expected baseline config schema version 3 or newer.' }
           if ($null -eq $config.runtime.captureTopology) { throw 'runtime.captureTopology is missing.' }
+          if (@($config.runtime.processNames).Count -ne 7) { throw 'Expected seven Titanium x64 server process names.' }
+          if (@($config.build.requiredInputs).Count -lt 4) { throw 'Known build prerequisites are missing from the example config.' }
+          if ([bool]$config.build.enabled) { throw 'Canonical build must remain opt-in for local runs.' }
 
       - name: Run baseline-tool self-test
         shell: powershell
@@ -60,6 +78,16 @@ jobs:
       - name: Run baseline-comparison self-test
         shell: powershell
         run: .\tools\baseline\tests\Invoke-BaselineComparisonSelfTest.ps1
+
+      - name: Run safe repository preflight
+        shell: powershell
+        run: |
+          $result = .\tools\baseline\Test-BaselinePrerequisites.ps1 `
+            -ConfigPath .\tools\baseline\baseline.config.example.json `
+            -OutputDirectory .\artifacts\baseline\ci-static-preflight
+          if (-not $result.Success) {
+            throw "Static preflight failed with $($result.ErrorCount) error(s)."
+          }
 
       - name: Run repository static Phase 0 audit
         shell: powershell
@@ -82,8 +110,50 @@ jobs:
             throw "$($failed.Count) static audit stage(s) failed."
           }
 
-      - name: Measure canonical Release x64 build
+          Add-Content $env:GITHUB_STEP_SUMMARY '## Phase 0 audit tooling'
+          Add-Content $env:GITHUB_STEP_SUMMARY '- PowerShell parsing: **passed**'
+          Add-Content $env:GITHUB_STEP_SUMMARY '- Functional self-tests: **passed**'
+          Add-Content $env:GITHUB_STEP_SUMMARY '- Static repository audit: **passed**'
+          Add-Content $env:GITHUB_STEP_SUMMARY ''
+          Add-Content $env:GITHUB_STEP_SUMMARY '> This job validates the evidence tooling. It does not assert that the Titanium game solution compiles.'
+
+      - name: Upload static audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase0-static-audit-${{ github.sha }}
+          path: artifacts/baseline/**
+          if-no-files-found: error
+          retention-days: 7
+
+  collect-canonical-build-evidence:
+    name: Collect canonical Release x64 build evidence
+    needs: validate-audit-tooling
+    runs-on: windows-2022
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Capture build prerequisite preflight
+        shell: powershell
+        run: |
+          $result = .\tools\baseline\Test-BaselinePrerequisites.ps1 `
+            -ConfigPath .\tools\baseline\baseline.config.example.json `
+            -RequireBuild `
+            -OutputDirectory .\artifacts\baseline\canonical-build-preflight
+
+          Add-Content $env:GITHUB_STEP_SUMMARY '## Canonical build prerequisite preflight'
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Success: **$($result.Success)**"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Errors: $($result.ErrorCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Warnings: $($result.WarningCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY ''
+          Add-Content $env:GITHUB_STEP_SUMMARY '> Preflight errors are retained as evidence; the build is still executed to capture the compiler baseline.'
+
+      - name: Execute canonical build as non-gating evidence
         id: canonical_build
+        continue-on-error: true
         shell: powershell
         run: |
           $result = .\tools\baseline\Measure-Build.ps1 `
@@ -93,27 +163,57 @@ jobs:
             -Platform x64 `
             -OutputDirectory '.\artifacts\baseline\canonical-build'
 
-          $summary = Get-Content $result.SummaryPath -Raw | ConvertFrom-Json
-          Add-Content $env:GITHUB_STEP_SUMMARY '## Canonical Release|x64 build baseline'
-          Add-Content $env:GITHUB_STEP_SUMMARY "- Runner: ``windows-2022``"
+          "succeeded=$($result.Succeeded.ToString().ToLowerInvariant())" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          "warning_count=$($result.WarningCount)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          "error_count=$($result.ErrorCount)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          "missing_input_count=$($result.MissingBuildInputCount)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+          if (-not $result.Succeeded) {
+            throw "Canonical Release|x64 build failed. This step is non-gating so the evidence can still be published."
+          }
+
+      - name: Publish canonical build result
+        if: always()
+        shell: powershell
+        run: |
+          $summaryPath = '.\artifacts\baseline\canonical-build\build-summary.json'
+          if (-not (Test-Path $summaryPath)) {
+            throw 'Canonical build summary is missing.'
+          }
+
+          $summary = Get-Content $summaryPath -Raw | ConvertFrom-Json
+          Add-Content $env:GITHUB_STEP_SUMMARY '## Canonical Release|x64 game build'
           Add-Content $env:GITHUB_STEP_SUMMARY "- Solution: ``Source\Source\all\all.sln``"
           Add-Content $env:GITHUB_STEP_SUMMARY "- Succeeded: **$($summary.succeeded)**"
           Add-Content $env:GITHUB_STEP_SUMMARY "- Exit code: $($summary.exitCode)"
           Add-Content $env:GITHUB_STEP_SUMMARY "- Duration: $([math]::Round($summary.elapsedMilliseconds / 1000, 3)) s"
-          Add-Content $env:GITHUB_STEP_SUMMARY "- Parsed warnings: $($summary.warningCount)"
-          Add-Content $env:GITHUB_STEP_SUMMARY "- Parsed errors: $($summary.errorCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- MSBuild warnings: $($summary.warningCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- MSBuild errors: $($summary.errorCount)"
+          Add-Content $env:GITHUB_STEP_SUMMARY "- Missing build inputs: $($summary.missingBuildInputCount)"
           Add-Content $env:GITHUB_STEP_SUMMARY ''
-          Add-Content $env:GITHUB_STEP_SUMMARY '> Warning counts are incomplete evidence while project configurations use TurnOffAllWarnings.'
 
-          # A failed legacy build is baseline evidence, not a failure of the audit tooling.
-          # The JSON summary and full MSBuild log are always uploaded for diagnosis.
-          exit 0
+          $missingPath = '.\artifacts\baseline\canonical-build\missing-build-inputs.csv'
+          if (Test-Path $missingPath) {
+            $missing = @(Import-Csv $missingPath)
+            if ($missing.Count -gt 0) {
+              Add-Content $env:GITHUB_STEP_SUMMARY '| Missing input | Classification | Affected projects |'
+              Add-Content $env:GITHUB_STEP_SUMMARY '|---|---|---|'
+              foreach ($row in $missing) {
+                Add-Content $env:GITHUB_STEP_SUMMARY "| ``$($row.Basename)`` | $($row.Classification) | $($row.AffectedProjects) |"
+              }
+              Add-Content $env:GITHUB_STEP_SUMMARY ''
+            }
+          }
 
-      - name: Upload repository audit and build evidence
+          if (-not $summary.succeeded) {
+            Add-Content $env:GITHUB_STEP_SUMMARY '> **Build status: failed.** The audit-tooling job may still be green because this job records the existing legacy build state instead of hiding it.'
+          }
+
+      - name: Upload canonical build evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: phase0-audit-${{ github.sha }}
+          name: phase0-canonical-build-${{ github.sha }}
           path: artifacts/baseline/**
           if-no-files-found: error
           retention-days: 7
