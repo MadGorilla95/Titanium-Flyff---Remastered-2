@@ -18,7 +18,7 @@ permissions:
 jobs:
   validate-audit-tools:
     runs-on: windows-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -60,3 +60,33 @@ jobs:
       - name: Run baseline-comparison self-test
         shell: powershell
         run: .\tools\baseline\tests\Invoke-BaselineComparisonSelfTest.ps1
+
+      - name: Run repository static Phase 0 audit
+        shell: powershell
+        run: .\tools\baseline\Invoke-BaselineAudit.ps1
+
+      - name: Verify repository audit stages
+        shell: powershell
+        run: |
+          $manifestFile = Get-ChildItem .\artifacts\baseline -Recurse -Filter baseline-manifest.json |
+            Sort-Object LastWriteTimeUtc |
+            Select-Object -Last 1
+          if ($null -eq $manifestFile) { throw 'No baseline manifest was produced.' }
+
+          $manifest = Get-Content $manifestFile.FullName -Raw | ConvertFrom-Json
+          $failed = @($manifest.stages | Where-Object status -eq 'failed')
+          if ($failed.Count -gt 0) {
+            $failed | ForEach-Object {
+              Write-Host "Failed stage: $($_.name) - $($_.message)" -ForegroundColor Red
+            }
+            throw "$($failed.Count) static audit stage(s) failed."
+          }
+
+      - name: Upload repository static audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase0-static-audit-${{ github.sha }}
+          path: artifacts/baseline/**
+          if-no-files-found: error
+          retention-days: 7
